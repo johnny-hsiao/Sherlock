@@ -3,13 +3,20 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="/javascripts/d3.layout.cloud.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form id="input_url">
+      <input type="text" name="url" placeholder="Enter article URL" />
+    </form>
+    
     <script type="text/javascript" src="/javascripts/word_cloud.js"></script>
+    <script type="text/javascript" src="/javascripts/application.js"></script>
+
   </body>
 
 </html>

@@ -33,13 +33,13 @@ function getFrequency(content){
   for (sWord in counts) {
     arr.push({
       text: sWord,
-      size: counts[sWord]
+      frequency: counts[sWord]
     });
   }
 
-  // sort array by descending size | http://stackoverflow.com/a/8837505
+  // sort array by descending frequency | http://stackoverflow.com/a/8837505
   var results = arr.sort(function(a,b){
-    return (a.size > b.size) ? -1 : ((a.size < b.size) ? 1 : 0);
+    return (a.frequency > b.frequency) ? -1 : ((a.frequency < b.frequency) ? 1 : 0);
   });
 
   // function displayKeywordFrequency(results){

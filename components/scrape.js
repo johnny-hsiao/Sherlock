@@ -1,6 +1,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
-// var models = require('../models/index');
+var models = require('../models/index');
 var keywordFrequency = require('./keywords')
 
 function parseURL(url) {
@@ -14,17 +14,25 @@ function parseURL(url) {
       var body = $('body').text();
       var keywords = keywordFrequency(body);
 
-
-      // models.Article.create({
-      //   title: title,
-      //   url: url
-      // });
-      // for (var word in keywords) {
-      //   models.Keyword.create({
-      //     word: word,
-      //     frequency: keywords[word]
-      //   });
-      // };
+      models.Article.create({
+        title: title,
+        url: url
+      }).then(function(article) {
+        keywords.forEach(function (word) {
+        
+          if (word.frequency > 2) {
+            
+            models.Keyword.create({
+              word: word.text,
+              frequency: word.frequency,
+              ArticleId: article.id
+            });
+          }
+          
+        })
+      })
+        
+      
       
 
       metaData = {
