@@ -21,4 +21,12 @@ router.get('/keywords', function(req, res, next) {
   });
 });
 
+router.delete('/keywords', function(req, res, next) {
+  for (var i = 1; i < 2700; i++) {
+  models.Keyword.destroy({
+    where: {id: i}
+  })
+  }
+});
+
 module.exports = router;

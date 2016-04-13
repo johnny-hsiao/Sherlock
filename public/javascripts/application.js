@@ -13,3 +13,14 @@ $('#input_url').on('submit', function (e) {
     console.log("im in public/js", "post to articles...")
   })
 })
+
+$('#destroy_db').on('click', function(e) {
+  e.preventDefault();
+
+  $.ajax({
+    url: '/keywords',
+    type: 'delete',
+  }, function(data) {
+    console.log("deleted!")
+  })
+})

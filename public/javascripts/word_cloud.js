@@ -4,7 +4,7 @@ $.getJSON('/keywords', function() {
 }).then(function(data) {
         data.forEach(function(keyword) {
         // console.log(keyword.word, keyword.frequency);
-            frequency_list.push({text: keyword.word, size: keyword.frequency * 10})
+            frequency_list.push({text: keyword.word, size: keyword.frequency * 2})
         })
         console.log('im inside')
         // console.log(arguments);
@@ -31,7 +31,7 @@ var generateWordle = function (frequency_list) {
             .start();
 
     function draw(words) {
-        d3.select("body").append("svg")
+        d3.select(".svg").append("svg")
                 .attr("width", 1000)
                 .attr("height", 350)
                 .attr("class", "wordcloud")
