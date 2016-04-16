@@ -1,0 +1,152 @@
+[ 
+  {
+    "forbes.com": {
+      "title": ".article-headline:first",
+      "content": ".article-text:first"
+    },
+    "bloomberg.com": {
+      "title": ".lede-headline__highlighted",
+      "content": ".article-body__content"
+    },
+    "finance.yahoo.com": {
+      "title": ".headline",
+      "content": "#mediaarticlebody"
+    },
+    "marketwatch.com": {
+      "title": "#article-headline",
+      "content": "#article-body"
+    },
+    "financialpost.com": {
+      "title": ".npStoryTitle",
+      "content": ".npPostContent"
+    },
+    "cnbc.com": {
+      "title": ".title:first",
+      "content": ".group"
+    },
+    "reuters.com": {
+      "title": ".primaryContent h1",
+      "content": "#resizeableText"
+    },
+    "wsj.com": {
+      "title": ".wsj-article-headline",
+      "content": "#wsj-article-wrap"
+    },
+    "nakedcapitalism.com": {
+      "title": ".single-post-title",
+      "content": ".pf-content"
+    },
+    "mindfulmoney.co.uk": {
+      "title": ".news-item:first",
+      "content": ".news-item"
+    },
+    "businessinsider.com": {
+      "title": ".js-post h1:first",
+      "content": ".post-content p"
+    },
+    "medium.com": {
+      "title": ".section-inner h3",
+      "content": ".section-inner p"
+    },
+    "cnet.com": {
+      "title": ".headline",
+      "content": ".description"
+    },
+    "engadget.com": {
+      "title": "h1",
+      "content": ".article-text"
+    },
+    "techcrunch.com": {
+      "title": ".tweet-title",
+      "content": ".article-entry p"
+    },
+    "mashable.com": {
+      "title": "h1.title:first",
+      "content": ".article-content p"
+    },
+    "theverge.com": {
+      "title": "h1.instapaper_title",
+      "content": ".m-article__entry p"
+    },
+    "wired.com": {
+      "title": "h1.post-title:first",
+      "content": ".content:first p"
+    },
+    "digitaltrends.com": {
+      "title": "h1.title",
+      "content": ".m-content p"
+    },
+    "techradar.com": {
+      "title": "header h1",
+      "content": "#article-body"
+    },
+     "gawker.com": { 
+       "title": ".headline:first", 
+       "content": ".post-content p" 
+    },
+     "gizmodo.com": { 
+       "title": ".headline:first", 
+       "content": ".post-content p" 
+    },
+      "gigaom.com": { 
+       "title": ".entry-title h1", 
+       "content": ".entry-content p" 
+    },
+    "bleacherreport.com": { 
+      "title": ".article_title", 
+      "content": ".article_body" 
+    },
+    "nba.com": { 
+      "title": ".nbaStoryH1", 
+      "content": "#StoryView" 
+    },
+    "mlb.com": { 
+      "title": ".headline:first", 
+      "content": ".full-text:first .default-styles" 
+    },
+    "nhl.com": { 
+      "title": " .article-item__headline:first", 
+      "content": " .article-item__body:first" 
+    },
+    "tsn.ca": { 
+      "title": " .headline h1", 
+      "content": " .article-text" 
+    },
+    "espn.com": { 
+      "title": ".article-header h1", 
+      "content": " .article-body:first p" 
+    },
+    "SBnation.com": { 
+      "title": ".m-entry__title", 
+      "content": ".article-body" 
+    },
+    "nfl.com": { 
+      "title": "articlehdr", 
+      "content": ".articleText" 
+    },
+    "eurosport.com": { 
+      "title": ".storyfull__header-title-main", 
+      "content": ".article-body" 
+    },
+    "nbcsports.com": { 
+      "title": ".pane-node-title", 
+      "content": ".field-item p" 
+    },
+    "sportsnet.ca": { 
+      "title": ".article-title", 
+      "content": ".article-body-text p" 
+    },
+    "thescore.com": { 
+      "title": ".article-title", 
+      "content": ".article-content p" 
+    },
+    "golfdigest.com": { 
+      "title": ".article-heading h1", 
+      "content": ".body-text" 
+    },
+    "sports.yahoo.ca": { 
+      "title": ".article-title", 
+      "content": ".body p" 
+    }
+  }
+]

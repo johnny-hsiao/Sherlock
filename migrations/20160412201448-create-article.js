@@ -14,6 +14,12 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      AccountId: {
+        type: Sequelize.INTEGER
+      },
+      CategoryId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
