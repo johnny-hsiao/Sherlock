@@ -31,7 +31,7 @@ $(document).ready(function () {
 
     $tableBody = $('tbody');
     console.log("im inside add tweet in application.js");
-    $.getJSON('/twitter/QuixoticChris', { CategoryId: 3 }, function(data) {
+    $.getJSON('/twitter/SenSanders', { CategoryId: 3 }, function(data) {
       data.tweets.forEach(function(tweet) {
         console.log(tweet);
         var urls = tweet.entities.urls;

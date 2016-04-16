@@ -27,6 +27,55 @@ scrapeGenerator("faisal", ["http://thesco.re/23ImS77",
 
 
 
+// var json_hash = { 
+//   "tones": [ 
+//     { 
+//       "score": 0.023628, 
+//       "tone_id": "anger", 
+//       "tone_name": "Anger"
+//     },
+//     { 
+//       "score": 0.403022, 
+//       "tone_id": "disgust",
+//       "tone_name": "Disgust"
+//     },
+//     {
+//       "score": 0.043199, 
+//       "tone_id": "fear",
+//       "tone_name": "Fear"
+//     },
+//     {
+//       "score": 0.06045,
+//       "tone_id": "joy",
+//       "tone_name": "Joy"
+//     },
+//     {
+//       "score": 0.064925,
+//       "tone_id": "sadness",
+//       "tone_name": "Sadness"
+//     }
+//   ],
+//   "category_id": "emotion_tone",
+//   "category_name": "Emotion Tone"
+// }
+
+// console.log("original json", typeof json_hash);
+
+// var str = JSON.stringify(json_hash);
+// console.log("json as string", typeof str);
+
+// var back_to_json = JSON.parse(str);
+// console.log("json back to json", typeof back_to_json);
+
+
+
+
+
+
+
+
+
+
 
 
 

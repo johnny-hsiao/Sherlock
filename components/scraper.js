@@ -1,8 +1,11 @@
 var request = require('request');
 var cheerio = require('cheerio');
-var models = require('../models/index');
 var parseForKeywords = require('./parse_for_keywords');
 var scraperHelper = require('../public/assets/scraper_helper.json');
+var tone_analyzer = require('../components/watson');
+var createArticlesAndKeywords = require('./create_articles_and_keywords');
+
+
 var scraperHelperHash = scraperHelper[0];
 var scraperHelperDomains = Object.keys(scraperHelperHash);
 
@@ -28,12 +31,12 @@ function scraper(url, accountId, categoryId) {
     var domainRes = url.match(/\w*.(com|ca|co.uk)/g);
     if (domainRes) {
       var domain = domainRes[0];
-    };
+    }
 
     if (scraperHelperHash[domain]) {
       title_html = scraperHelperHash[domain].title;
       content_html = scraperHelperHash[domain].content;
-    };
+    }
 
     request(url, function (error, response, html) {
 
@@ -45,36 +48,33 @@ function scraper(url, accountId, categoryId) {
 
         var keywords = parseForKeywords(content);
 
-        models.Article.create({
-          title: title,
-          url: url,
-          AccountId: accountId,
-          CategoryId: categoryId
-        })
-        .then(function(article) {
-          keywords.forEach(function (word) {
-          
-            if (word.frequency > 2) {
-              
-              models.Keyword.create({
-                word: word.text,
-                frequency: word.frequency,
-                ArticleId: article.id,
-                AccountId: article.AccountId,
-                CategoryId: article.CategoryId
-              });
-            };
-            
-          });
-        });   
+        tone_analyzer.tone(
+          { text: content },          
+          function(err, tone) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var article_tone = tone.document_tone.tone_categories;
+              // console.log(JSON.stringify(article_tone));
+              createArticlesAndKeywords(title, url, article_tone, accountId, categoryId, keywords);
+            }
+          }
+        );
+        
       }
       else {
         console.log(error);
-      };    
+      }  
     });
   }
+  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|nytimes.com|nyti.ms/))
+  var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|nytimes.com|nyti.ms/);
 
-  expandUrl(url);
-};
+  if (!ignoredDomains) {
+    console.log("im inside the expandURL")
+    expandUrl(url);
+  }
+}
 
 module.exports = scraper;

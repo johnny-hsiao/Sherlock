@@ -16,7 +16,7 @@ function parseForKeywords(content){
   "jan","feb","mar","apr","jun","jul","aug","sept","oct","nov","dec","monday","tuesday","wednesday",
   "thursday","friday","saturday","sunday","mon","tues","wed","thurs","fri","sat","should","would","could",
   "vs","only","here","st","wouldnt","going","est","using","got","put","hes","didnt","think","likely","years",
-  "u","front","page","v"];
+  "u","front","page","v","loading"];
 
   ignore = (function(){
     var o = {}; // object prop checking > in array checking

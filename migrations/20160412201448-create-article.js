@@ -14,6 +14,15 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      emotionTone: {
+        type: Sequelize.TEXT
+      },
+      writingTone: {
+        type: Sequelize.TEXT
+      },
+      socialTone: {
+        type: Sequelize.TEXT
+      },
       AccountId: {
         type: Sequelize.INTEGER
       },
