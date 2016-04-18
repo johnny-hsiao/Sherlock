@@ -30,7 +30,7 @@ function parseForKeywords(content){
   var counts = {}; // object for math
   for (var i=0; i<iWordsCount; i++) {
     var sWord = sWords[i];
-    if (!ignore[sWord]) {
+    if (sWord.length > 2 && !ignore[sWord]) {
       counts[sWord] = counts[sWord] || 0;
       counts[sWord]++;
     }

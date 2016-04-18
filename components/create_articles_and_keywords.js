@@ -1,6 +1,6 @@
 var models = require('../models/index');
 
-var createArticlesAndKeywords = function (title, url, article_tone, accountId, categoryId, keywords) {
+var createArticlesAndKeywords = function (title, url, date, article_tone, accountId, categoryId, keywords) {
   models.Article.create({
     title: title,
     url: url,
@@ -19,6 +19,7 @@ var createArticlesAndKeywords = function (title, url, article_tone, accountId, c
         models.Keyword.create({
           word: word.text,
           frequency: word.frequency,
+          tweetDate: date,
           ArticleId: article.id,
           AccountId: article.AccountId,
           CategoryId: article.CategoryId

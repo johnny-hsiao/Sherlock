@@ -1,8 +1,8 @@
 [ 
   {
     "forbes.com": {
-      "title": ".article-headline:first",
-      "content": ".article-text:first"
+      "title": ".article-headline",
+      "content": ".article-text"
     },
     "bloomberg.com": {
       "title": ".lede-headline__highlighted",
@@ -21,7 +21,7 @@
       "content": ".npPostContent"
     },
     "cnbc.com": {
-      "title": ".title:first",
+      "title": ".title",
       "content": ".group"
     },
     "reuters.com": {
@@ -37,11 +37,11 @@
       "content": ".pf-content"
     },
     "mindfulmoney.co.uk": {
-      "title": ".news-item:first",
+      "title": ".news-item",
       "content": ".news-item"
     },
     "businessinsider.com": {
-      "title": ".js-post h1:first",
+      "title": ".js-post h1",
       "content": ".post-content p"
     },
     "medium.com": {
@@ -61,7 +61,7 @@
       "content": ".article-entry p"
     },
     "mashable.com": {
-      "title": "h1.title:first",
+      "title": "h1.title",
       "content": ".article-content p"
     },
     "theverge.com": {
@@ -69,8 +69,8 @@
       "content": ".m-article__entry p"
     },
     "wired.com": {
-      "title": "h1.post-title:first",
-      "content": ".content:first p"
+      "title": "h1.post-title",
+      "content": ".content p"
     },
     "digitaltrends.com": {
       "title": "h1.title",
@@ -81,11 +81,11 @@
       "content": "#article-body"
     },
      "gawker.com": { 
-       "title": ".headline:first", 
+       "title": ".headline", 
        "content": ".post-content p" 
     },
      "gizmodo.com": { 
-       "title": ".headline:first", 
+       "title": ".headline", 
        "content": ".post-content p" 
     },
       "gigaom.com": { 
@@ -101,12 +101,12 @@
       "content": "#StoryView" 
     },
     "mlb.com": { 
-      "title": ".headline:first", 
-      "content": ".full-text:first .default-styles" 
+      "title": ".headline", 
+      "content": ".full-text .default-styles" 
     },
     "nhl.com": { 
-      "title": " .article-item__headline:first", 
-      "content": " .article-item__body:first" 
+      "title": " .article-item__headline", 
+      "content": " .article-item__body" 
     },
     "tsn.ca": { 
       "title": " .headline h1", 
@@ -114,7 +114,7 @@
     },
     "espn.com": { 
       "title": ".article-header h1", 
-      "content": " .article-body:first p" 
+      "content": " .article-body p" 
     },
     "SBnation.com": { 
       "title": ".m-entry__title", 

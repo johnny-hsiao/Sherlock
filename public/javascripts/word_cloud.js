@@ -1,10 +1,14 @@
+// $('#twitter').on('click', function (e) {
+//     function loadWordCloud() {
 $.getJSON('/keywords', function() {})
 .then(function(keywords) {
-    $('#svg').load(generateWordle(keywords));
-})
+    $('#word_cloud').load(generateWordle(keywords));
+});
+//     }
 
+//     setTimeout(loadWordCloud, 5000);
+// });
 
-// var keywords = [{"text":"study","size":40},{"text":"motion","size":15}];
 
 var generateWordle = function (keywords) {
 
@@ -21,7 +25,7 @@ var generateWordle = function (keywords) {
             .start();
 
     function draw(words) {
-        d3.select("#svg").append("svg")
+        d3.select("#word_cloud").append("svg")
                 .attr("width", 1000)
                 .attr("height", 350)
                 .attr("class", "wordcloud")
@@ -39,4 +43,4 @@ var generateWordle = function (keywords) {
                 })
                 .text(function(d) { return d.text; });
     }
-}
+};

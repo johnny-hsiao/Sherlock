@@ -9,7 +9,7 @@ var createArticlesAndKeywords = require('./create_articles_and_keywords');
 var scraperHelperHash = scraperHelper[0];
 var scraperHelperDomains = Object.keys(scraperHelperHash);
 
-function scraper(url, accountId, categoryId) {
+function scraper(url, date, accountId, categoryId) {
   console.log("inside scraper")
 
   function expandUrl(url) {
@@ -17,8 +17,11 @@ function scraper(url, accountId, categoryId) {
     if (url.length <= 25) {
       request( { method: "HEAD", url: url, followAllRedirects: true },
         function (error, response) {
-        scrapeURL(response.request.href);
-      });
+          if (response) {
+            scrapeURL(response.request.href);
+          }
+        }
+      );
     } else {
       scrapeURL(url);
     }
@@ -47,28 +50,27 @@ function scraper(url, accountId, categoryId) {
         var content = $(content_html).text();
 
         var keywords = parseForKeywords(content);
-
-        tone_analyzer.tone(
-          { text: content },          
-          function(err, tone) {
-            if (err) {
-              console.log(err);
-            }
-            else {
-              var article_tone = tone.document_tone.tone_categories;
-              // console.log(JSON.stringify(article_tone));
-              createArticlesAndKeywords(title, url, article_tone, accountId, categoryId, keywords);
-            }
-          }
-        );
-        
+        var article_tone = ["", "", ""];
+        // tone_analyzer.tone(
+        //   { text: content },          
+        //   function(err, tone) {
+        //     if (err) {
+        //       console.log(err);
+        //     }
+        //     else {
+        //       var article_tone = tone.document_tone.tone_categories;
+        //       // console.log(JSON.stringify(article_tone));
+              
+        //     }
+        //   }
+        // );
+        createArticlesAndKeywords(title, url, date, article_tone, accountId, categoryId, keywords);
       }
       else {
         console.log(error);
       }  
     });
   }
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|nytimes.com|nyti.ms/))
   var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|nytimes.com|nyti.ms/);
 
   if (!ignoredDomains) {

@@ -14,6 +14,9 @@ module.exports = {
       frequency: {
         type: Sequelize.INTEGER
       },
+      tweetDate: {
+        type: Sequelize.DATE
+      },
       ArticleId: {
         type: Sequelize.INTEGER
       },

@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   var Keyword = sequelize.define('Keyword', {
     word: DataTypes.STRING,
     frequency: DataTypes.INTEGER,
+    tweetDate: DataTypes.DATE,
     ArticleId: DataTypes.INTEGER
   }, {
     classMethods: {

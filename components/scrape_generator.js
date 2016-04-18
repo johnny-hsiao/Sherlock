@@ -13,7 +13,7 @@ function scrapeGenerator(screen_name, articleURLArray, CategoryId) {
   // given accountId returned, scraper each articleURL and associate them with accountId
   .then(function (accountInfo) {
     articleURLArray.forEach(function(articleURL) {
-      scraper(articleURL, accountInfo.AccountId, accountInfo.CategoryId);
+      scraper(articleURL.url, articleURL.date, accountInfo.AccountId, accountInfo.CategoryId);
     });
   });
 };
