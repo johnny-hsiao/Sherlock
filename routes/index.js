@@ -5,6 +5,7 @@ var models = require('../models/index');
 var twitter = require('../components/twitter');
 var scrapeGenerator = require('../components/scrape_generator');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Twitter Analytics' });
@@ -16,127 +17,103 @@ router.get('/', function(req, res, next) {
 //   var results = scraper(req.body.url);
 // });
 
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                                                /keywords
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+
+
 /* GET all keywords from db */
 router.get('/keywords', function(req, res, next) {
   models.Keyword.findAll().then(function(keywords){
-    // console.log("im in routes keywords", keywords)
-    var aggregatedKeywords = {};
-
-    keywords.forEach(function(keyword) {
-      if (aggregatedKeywords[keyword.word]) {
-        aggregatedKeywords[keyword.word] += keyword.frequency;
-      }
-      else {
-        aggregatedKeywords[keyword.word] = keyword.frequency;
-      }
-    });
-
-    var formattedKeywords = [];
-    for (var word in aggregatedKeywords) {
-      formattedKeywords.push({ 
-        text: word, 
-        size: aggregatedKeywords[word] 
-      });
-    }
-
-    res.json(formattedKeywords);
+    _formattedKeywordsForWordCloud(keywords, res);
   });
 });
 
 /* DELETE all keywords from first 500 items in DB */
-router.delete('/keywords', function(req, res, next) {
-  models.Keyword.min('id').then(function(start) {
+// router.delete('/keywords', function(req, res, next) {
+//   models.Keyword.min('id').then(function(start) {
 
-    for (var i = start; i < start+500; i++) {
-      models.Keyword.destroy({
-        where: {id: i}
-      });
-    }
+//     for (var i = start; i < start+500; i++) {
+//       models.Keyword.destroy({
+//         where: {id: i}
+//       });
+//     }
 
-  });
-});
+//   });
+// });
 
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+                                                /twitter
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+
+// For screen_name, make a twitter API call and initialize the scrape generator for each URL found in tweets
 router.get('/twitter/:screen_name', function(req, res, next) {
-  twitterAPICallAndInitScrape(req.params);
+  _twitterAPICallAndInitScrape(req.params, req.query.CategoryId);
 });
 
 
-
+// For a given category, find all accounts in the DB with that category, and get their tweets and scrape any URLs found in tweets 
 router.get('/twitter/:category/scrape_all', function(req, res, next) {
+  
+  // Find category in DB given a category name
   models.Category.findOne({
-    where: {
-      name: req.params.category
-    }
-  }).then(function (cat) {
-    // console.log("cat", cat.id);
-    // console.log("cat", req.params.category)
+    where: { name: req.params.category }
+  })
 
-
+  // Find all accounts in DB given the CategoryId
+  .then(function (cat) {
     models.Account.findAll({
-      where: {
-        CategoryId: cat.id
-      }
+      where: { CategoryId: cat.id }
     })
+    // For each account's screen_name, make a twitter API call and initialize the scrape generator for each URL found in tweets
     .then(function (accounts) {
       accounts.forEach(function (account) {
-        // console.log(account.screen_name)
-        twitterAPICallAndInitScrape(account);
-      })
-    })
-  })
+        _twitterAPICallAndInitScrape(account, account.CategoryId);
+      });
+    });
+  });
+
 });
 
-var twitterAPICallAndInitScrape = function (account) {
-  twitter.get('statuses/user_timeline', {screen_name: account.screen_name, count: 200}, function(error, tweets, response){
-    if (!error) {
-      var urlsArray = [];
-      tweets.forEach(function(tweet) {
-        var urls = tweet.entities.urls;
-        if (urls[0]) {
-          urlsArray.push({
-            url: urls[0].expanded_url,
-            date: tweet.created_at
-          });
-        }
-      });
-      scrapeGenerator(account.screen_name, urlsArray, account.CategoryId);
-      // res.json({
-      //   tweets: tweets
-      // });
-    }
-  });
-}
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+                                                /categories
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 
 router.get('/categories', function(req, res, next) {
-  var categories = models.Category.findAll()
+  models.Category.findAll()
   .then(function (categories) {
-    res.json({
-      categories: categories
-    });
+    res.json({ categories: categories });
   });
 });
 
-router.get('/categories/:category_id/accounts', function(req, res, next) {
-  var accounts = models.Account.findAll({
-    where: {CategoryId: 3}
-  })
-  .then(function (accounts) {
-    res.json({
-      accounts: accounts
-    });
-  });
-});
+// router.get('/categories/:category_id/accounts', function(req, res, next) {
+//   models.Account.findAll({ 
+//     where: { CategoryId: req.params.category_id } 
+//   })
+//   .then(function (accounts) {
+//     res.json({ accounts: accounts });
+//   });
+// });
 
 router.get('/categories/:category_id/word_cloud', function(req, res, next) {
-  models.Account.findAll({
+  models.Keyword.findAll({
     where: {CategoryId: req.params.category_id}
   })
-  .then(function (accounts) {
-    res.json({
-      accounts: accounts
-    });
+  .then(function (keywords) {
+    _formattedKeywordsForWordCloud(keywords, res);
   });
 });
 
@@ -151,14 +128,15 @@ router.get('/categories/:category_id/word_line/:word', function (req, res, next)
     var sortedByDate = {};
     
     keywords.forEach(function (keyword) {
-      var str = String(keyword.tweetDate).split(' ');
-      // console.log(str)
-      var year = keyword.tweetDate.getFullYear();
-      var month = keyword.tweetDate.getMonth();
-      var day = keyword.tweetDate.getDate();
+      // var year = keyword.tweetDate.getFullYear();
+      // var month = keyword.tweetDate.getMonth();
+      // var day = keyword.tweetDate.getDate();
       // var tweetDate = new Date(year,month,day);
-      var dateInt = Math.ceil(Date.parse(keyword.tweetDate)/86400000)
-      var tweetDate = str[2]+'-'+str[1]+'-'+str[3][2]+str[3][3]
+
+      var str = String(keyword.tweetDate).split(' ');
+      var dateInt = Math.ceil(Date.parse(keyword.tweetDate)/86400000);
+      var tweetDate = str[2]+'-'+str[1]+'-' + str[3][2] + str[3][3];
+      
       if (sortedByDate[dateInt]) {
         sortedByDate[dateInt].frequency += keyword.frequency;
       }
@@ -167,13 +145,59 @@ router.get('/categories/:category_id/word_line/:word', function (req, res, next)
       }
     });
 
-    res.json({
-      keywords: sortedByDate
-    });
+    res.json({ keywords: sortedByDate });
   });
 });
 
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+                                                helper methods
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+
+var _twitterAPICallAndInitScrape = function (account, CategoryId) {
+  twitter.get('statuses/user_timeline', {screen_name: account.screen_name, count: 200}, function(error, tweets, response){
+    if (!error && (typeof tweets != 'string') ) {
+
+      var urlsArray = [];
+      tweets.forEach(function(tweet) {
+        var urls = tweet.entities.urls;
+        if (urls[0]) {
+          urlsArray.push({
+            url: urls[0].expanded_url,
+            date: tweet.created_at
+          });
+        }
+      });
+
+      scrapeGenerator(account.screen_name, urlsArray, CategoryId);
+    }
+  });
+};
+
+var _formattedKeywordsForWordCloud = function(keywords, res) {
+  var aggregatedKeywords = {};
+  var formattedKeywords = [];
+
+  keywords.forEach(function(keyword) {
+    if (aggregatedKeywords[keyword.word]) {
+      aggregatedKeywords[keyword.word] += keyword.frequency;
+    }
+    else {
+      aggregatedKeywords[keyword.word] = keyword.frequency;
+    }
+  });
+
+  for (var word in aggregatedKeywords) {
+    formattedKeywords.push({ 
+      text: word, 
+      size: aggregatedKeywords[word]/10
+    });
+  }
+
+  res.json(formattedKeywords);
+};
 
 module.exports = router;

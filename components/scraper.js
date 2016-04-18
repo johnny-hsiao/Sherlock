@@ -10,7 +10,6 @@ var scraperHelperHash = scraperHelper[0];
 var scraperHelperDomains = Object.keys(scraperHelperHash);
 
 function scraper(url, date, accountId, categoryId) {
-  console.log("inside scraper")
 
   function expandUrl(url) {
     // shortened URLs are 25 characters and under typically
@@ -71,10 +70,10 @@ function scraper(url, date, accountId, categoryId) {
       }  
     });
   }
-  var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|nytimes.com|nyti.ms/);
+
+  var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|twitter.com|nytimes.com|nyti.ms/);
 
   if (!ignoredDomains) {
-    console.log("im inside the expandURL")
     expandUrl(url);
   }
 }

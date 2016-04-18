@@ -1,10 +1,10 @@
-  var category_id = 1;
-  var word = "run";
+  var category_id = 3;
+  var word = "elearning";
   $.getJSON('/categories/' + category_id + '/word_line/' + word)
   .then(function (data) {
     $('#word_line').load(generateLineGraph(data.keywords));
     // console.log("data for line", data.keywords);
-  })
+  });
 
 function generateLineGraph(graphData) {
     console.log("im in word_line")
