@@ -1,4 +1,4 @@
-var category_id = 2;
+var category_id = 3;
 
 $.getJSON('/categories/' + category_id + '/word_cloud')
 .then(function(allKeywords) {

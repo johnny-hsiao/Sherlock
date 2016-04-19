@@ -42,7 +42,7 @@ function parseForKeywords(content){
   "file","tech","email","experience","case","key","lab","problem","home","messenger","range","try","doing","having",
   "age","click","game","games","free","ways","site","pingback","value","tool","reading","training","idea","staff",
   "fairhaven","structure","cash","based","problems","able","school","schools","teacher","teachers","kids","kid",
-  "point","ask","focus","program","education","helps","media"];
+  "point","ask","focus","program","education","helps","media","play","available"];
 
   ignore = (function(){
     var o = {}; // object prop checking > in array checking
