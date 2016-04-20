@@ -1,4 +1,4 @@
-var category_id = 2;
+var category_id = 3;
 
 $.getJSON('/categories/' + category_id + '/word_cloud')
 .then(function(allKeywords) {
@@ -27,38 +27,45 @@ $.getJSON('/categories/' + category_id + '/word_cloud')
 
 var generateWordle = function (keywords) {
 
-  var fill = d3.scale.category20();
+    var fill = d3.scale.category20();
 
-  var color = d3.scale.linear()
-      .domain([0, 50])
-      .range(["#ADA1A1", "#c7c7d3"]);
-
-   d3.layout.cloud().size([800, 500])
-    .words(keywords)
-    .padding(6)
-    .rotate(function(d) { return Math.random(); })
-    .fontSize(function(d) { return d.size; })
-    .on("end", draw)
-    .start();
+     d3.layout.cloud().size([800, 500])
+      .words(keywords)
+      .padding(15)
+      .rotate(function(d) { return Math.random(); })
+      .fontSize(function(d) { return d.size/3; })
+      .on("end", draw)
+      .start();
 
   function draw(words) {
-    d3.select("body").append("svg")
-        .attr("width", '100%')
-        .attr("height", 600)
+    var origSize = 0;
+    d3.select("#word_cloud").append('svg')
+        .attr("width", 800)
+        .attr("height", 500)
       .append("g")
-        .attr("transform", "translate(500,300)")
+        .attr("transform", "translate(400,250)")
       .selectAll("text")
         .data(words)
-      .enter().append("text")
+      .enter().append("text").style("font-weight", "bold")
         .style("font-size", function(d) { return d.size + "px"; })
-        .style("fill", function(d, i) { return color(i); })
+        .style("fill", function(d, i) { return fill(i); })
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
-          return "translate(" + [d.x, d.y] + ")";
+          return "translate(" + [d.x, d.y] + ")"
         })
-        .text(function(d) { return d.text; });
+        .text(function(d) { return d.text; })
+        .on('mouseover', function(d){
+            d3.select(this)
+            .style('font-weight', 'normal')
+            .style('font-size' , origSize = d.size+10);
+        })
+        .on('mouseout', function(d){
+            d3.select(this).style('font-weight', 'bold')
+             .style('font-size' , origSize = d.size).transition().delay(2000);
+        })
   }
-};
+   
+}
 
 var compare = function (a,b) {
   if (a.size < b.size)

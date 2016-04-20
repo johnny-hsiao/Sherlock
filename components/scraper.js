@@ -30,7 +30,7 @@ function scraper(url, date, accountId, categoryId) {
     var title_html = 'head title';
     var content_html = 'p';  
 
-    var domainRes = url.match(/\w*.(com|ca|co.uk)/g);
+    var domainRes = url.match(/\w*.(com|ca|co.uk|org|net|io|)/g);
     if (domainRes) {
       var domain = domainRes[0];
     }
@@ -50,20 +50,22 @@ function scraper(url, date, accountId, categoryId) {
 
         var keywords = parseForKeywords(content);
         var article_tone = ["", "", ""];
-        // tone_analyzer.tone(
-        //   { text: content },          
-        //   function(err, tone) {
-        //     if (err) {
-        //       console.log(err);
-        //     }
-        //     else {
-        //       var article_tone = tone.document_tone.tone_categories;
-        //       // console.log(JSON.stringify(article_tone));
+        
+        tone_analyzer.tone(
+          { text: content },          
+          function(err, tone) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              var article_tone = tone.document_tone.tone_categories;
+              // console.log(JSON.stringify(article_tone));
+              createArticlesAndKeywords(title, url, date, article_tone, accountId, categoryId, keywords);
               
-        //     }
-        //   }
-        // );
-        createArticlesAndKeywords(title, url, date, article_tone, accountId, categoryId, keywords);
+            }
+          }
+        );
+        
       }
       else {
         console.log(error);
@@ -71,7 +73,7 @@ function scraper(url, date, accountId, categoryId) {
     });
   }
 
-  var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|twitter.com|nytimes.com|nyti.ms/);
+  var ignoredDomains = url.match(/youtube.com|facebook.com|youtu.be|instagram.com|facebook.com|twitter.com|nytimes.com|nyti.ms|vine.co|twimg.com/);
 
   if (!ignoredDomains) {
     expandUrl(url);

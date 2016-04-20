@@ -1,10 +1,10 @@
-  var category_id = 3;
-  var word = "elearning";
-  $.getJSON('/categories/' + category_id + '/word_line/' + word)
-  .then(function (data) {
-    $('#word_line').load(generateLineGraph(data.keywords));
-    // console.log("data for line", data.keywords);
-  });
+  // var category_id = ;3
+  // var word = "elearning";
+  // $.getJSON('/categories/' + category_id + '/word_line/' + word)
+  // .then(function (data) {
+  //   $('#word_line').load(generateLineGraph(data.keywords));
+  //   // console.log("data for line", data.keywords);
+  // });
 
 function generateLineGraph(graphData) {
     console.log("im in word_line")
@@ -38,7 +38,7 @@ function generateLineGraph(graphData) {
         .y(function(d) { return y(d.close); });
         
     // Adds the svg canvas
-    var svg = d3.select("body")
+    var svg = d3.select("#word_line")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)

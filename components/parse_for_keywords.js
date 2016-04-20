@@ -42,7 +42,7 @@ function parseForKeywords(content){
   "file","tech","email","experience","case","key","lab","problem","home","messenger","range","try","doing","having",
   "age","click","game","games","free","ways","site","pingback","value","tool","reading","training","idea","staff",
   "fairhaven","structure","cash","based","problems","able","school","schools","teacher","teachers","kids","kid",
-  "point","ask","focus","program","education","helps","media"];
+  "point","ask","focus","program","education","helps","media", "available", "play", "los", "getting", "win", "ive", "supportshtml", "isnanwidth", "watchespntue", "updatesize", "rshdetach", "iforh", "cable", "offer", "customers", "cable", "tickets"];
 
   ignore = (function(){
     var o = {}; // object prop checking > in array checking
@@ -56,7 +56,7 @@ function parseForKeywords(content){
   var counts = {}; // object for math
   for (var i=0; i<iWordsCount; i++) {
     var sWord = sWords[i];
-    if (sWord.length > 2 && !ignore[sWord]) {
+    if (sWord.length > 3 && !ignore[sWord] && sWord.length < 13) {
       counts[sWord] = counts[sWord] || 0;
       counts[sWord]++;
     }
