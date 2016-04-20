@@ -3,10 +3,12 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bar_graph.css' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="/javascripts/d3.layout.cloud.js"></script>
     <script src="/javascripts/liquidFillGauge.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
   </head>
   <body>
     <h1><%= title %></h1>
@@ -30,7 +32,9 @@
       <svg id="sadness" width="14%" height="200"></svg>
     </div>
     <div id="writing">
-      
+      <div id="analytic"></div>
+      <div id="Confidence"></div>
+      <div id="Tentative"></div>
     </div>
 
 
@@ -41,7 +45,7 @@
     <script type="text/javascript" src="/javascripts/word_cloud.js"></script>
     <script type="text/javascript" src="/javascripts/word_line.js"></script>
     <script type="text/javascript" src="/javascripts/tone_graphs.js"></script>
-    <!--<script type="text/javascript" src="/javascripts/barchart.js"></script>-->
+    <script type="text/javascript" src="/javascripts/bar_graph.js"></script>
     <script type="text/javascript" src="/javascripts/application.js"></script>
 
 
