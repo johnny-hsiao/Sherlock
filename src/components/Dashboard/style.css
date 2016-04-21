@@ -1,0 +1,67 @@
+#row2 {
+  margin-top: 25px;
+}
+
+#row3 {
+  margin-top: 25px;
+}
+
+.word-cloud {
+  border: 2px solid #eee;
+  height: 350px;
+  text-align: center;
+  font-size: 40px;
+  vertical-align: middle;
+}
+
+.line-graph {
+  border: 2px solid #eee;
+  height: 300px;
+  text-align: center;
+  font-size: 40px;
+  vertical-align: middle;
+}
+
+.word-frequency {
+  border: 2px solid #eee;
+  border-left: none;
+  overflow-x: inherit;
+  overflow-y: auto;
+  height: 300px;
+}
+
+.article-list {
+  border: 2px solid #eee;
+  border-right: none;
+  overflow-x: inherit;
+  overflow-y: auto;
+  height: 350px;
+}
+
+.watson-graphs {
+  border: 2px solid #eee;
+  height: 350px;
+  padding: 0px;
+}
+
+.emotion-graph {
+  height: 173px;
+}
+
+.social-graph {
+  height: 173px;
+  border-right: 2px solid #eee;
+}
+
+.writing-style {
+  height: 173px;
+}
+
+.graph-1 {
+  border-bottom: 2px solid #eee;
+  height: 175px;
+}
+
+.graph-2 {
+  height: 175px;
+}

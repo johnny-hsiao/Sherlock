@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+.navbar {
+  margin-top:30px;
+  margin-bottom: 30px;
+  padding: 15px 0;
+  background: #FFDF43;
+  border: none;
+}
+
+#navbar-brand {
+  color: #121212;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  vertical-align: middle;
+  display: inline;
+  line-height: 50px;
+}
+
+#navbar-brand:hover {
+  text-decoration: none;
+}
+
+.navbar-toggle.collapsed {
+  border: none;
+   color: #121212; 
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #121212;
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  padding-right: 50px;
+}
+
+.navbar {
+  border-radius: 0px;
+}

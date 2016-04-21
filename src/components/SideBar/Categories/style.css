@@ -1,0 +1,52 @@
+.btn-default {
+  border: none;
+}
+
+.modal-content {
+  border-radius: 0px;
+  width: 350px;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 14px;
+}
+
+.modal-body {
+  padding: 20px 0px;
+}
+
+.modal-input {
+  background: #E6E6E6;
+  border: none;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  border-radius: 0px;
+}
+
+.btn.btn-success {
+  margin-left: 0px;
+  width: 70px;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 10px 0px;
+  padding-left: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  background: #eee;
+}
+
+.dropdown-toggle:hover {
+  background: #e6e6e6;
+}

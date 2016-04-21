@@ -1,0 +1,45 @@
+#account_input {
+  outline: none;
+  background: #eee;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-left: none;
+  height: 40px;
+  padding-left: 20px;
+}
+
+.list-group-item {
+  border-left: none;
+  border-right: none;
+  outline: none;
+  padding: 10px 0px;
+  padding-left: 20px;
+}
+
+.list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.list-group {
+  margin: 0px;
+  overflow-x: inherit;
+  overflow-y: auto;
+  height: 180px;
+}
+
+.accounts-heading {
+  padding-left: 20px;
+  margin-top: 45px;
+  margin-bottom: 25px;
+}
+
+.row {
+  padding: 0px;
+}

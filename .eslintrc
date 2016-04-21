@@ -1,0 +1,61 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+  "browser": true,
+  "node": true
+},
+  "globals": {
+},
+"ecmaFeatures": {
+  "arrowFunctions": true,
+  "blockBindings": true,
+  "classes": true,
+  "defaultParams": true,
+  "destructuring": true,
+  "forOf": true,
+  "generators": false,
+  "modules": true,
+  "objectLiteralComputedProperties": true,
+  "objectLiteralDuplicateProperties": false,
+  "objectLiteralShorthandProperties": true,
+  "objectLiteralShorthandMethods": true,
+  "spread": true,
+  "superInFunctions": true,
+  "templateStrings": true,
+  "jsx": true
+},
+"rules": {
+  "brace-style": 2,
+  "consistent-return": 2,
+  "curly": [2, "multi-line"],
+  "dot-notation": 2,
+  "eol-last": 2,
+  "func-names": 0,
+  "indent": [2, 2],
+  "new-cap": 0,
+  "no-else-return": 2,
+  "no-eq-null": 2,
+  "no-floating-decimal": 2,
+  "no-param-reassign": 2,
+  "no-self-compare": 2,
+  "no-shadow": 0,
+  "no-throw-literal": 2,
+  "no-underscore-dangle": 0,
+  "quotes": [2, "single"],
+  "strict": 0,
+  "vars-on-top": 2,
+  "wrap-iife": [2, "inside"],
+  "semi": [2, "always"],
+  "no-trailing-spaces": 2,
+  "space-after-keywords": 2,
+  "space-before-blocks": 2,
+  "space-before-function-paren": [2, "never"],
+  "space-in-parens": [2, "never"],
+  "space-infix-ops": 2,
+  "space-return-throw-case": 2,
+  "spaced-comment": 2
+  }
+}

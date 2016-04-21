@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+
+.form-control {
+  border-radius: 0px;
+}
+
+.btn.btn-success {
+  width: 100px;
+}
+
+.sign-up-title {
+  font-size: 14px;
+  text-align: center;
+}
+
+.well {
+  margin-top: 35px;
+  border-radius: 0px;
+}
+
+.text {
+  margin-top: 120px;
+}
+
+.title {
+  font-family: Arial,Helvetica,freesans,sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+.slogan {
+  font-family: Arial,Helvetica,freesans,sans-serif;
+  margin-top: 35px;
+  font-style: italic;
+  text-align: center;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.endorsement {
+  font-family: Arial,Helvetica,freesans,sans-serif;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.quote {
+  font-family: Arial,Helvetica,freesans,sans-serif;
+  text-align: center;
+}
+
+.login-bar {
+  padding: 0px;
+}
