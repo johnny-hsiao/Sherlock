@@ -2,13 +2,11 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import Grid from 'react-bootstrap/lib/Grid';
 import WordCloud from './WordCloud/WordCloud';
-import Anger from './EmotionGraphs/Anger';
-import FearGraph from './EmotionGraphs/FearGraph';
-import JoyGraph from './EmotionGraphs/JoyGraph';
-import SadnessGraph from './EmotionGraphs/SadnessGraph';
-import DisgustGraph from './EmotionGraphs/DisgustGraph';
+import EmotionGraphs from './EmotionGraphs2/EmotionGraphs';
 import LineGraph from './LineGraph/LineGraph';
 import WritingStyle from './WritingStyle/WritingStyle2';
+
+
 var axios = require('axios');
 
 
@@ -20,44 +18,45 @@ export default class Dashboard extends Component {
     this.state = {
       analytical: 0,
       confident: 0,
-      tentative: 0
+      tentative: 0,
+      anger: 23
     }
     this._updateGraphs = this._updateGraphs.bind(this);
-  }
-  componentWillMount() {
-    console.log("dashboard: will mount")
   }
   
   componentDidMount() {
     console.log("dashboard: did mount");
-    axios.get('http://127.0.0.1:5000/articles/1500')
+    axios.get('http://127.0.0.1:5000/articles/1511')
     .then((res) => {
       this._updateGraphs(res.data)
 
     });
   }
 
+  // componentWillUpdate() {
+  //   console.log("dashboard: did mount");
+  //   axios.get('http://127.0.0.1:5000/articles/1043')
+  //   .then((res) => {
+  //     this._updateGraphs(res.data)
 
-componentWillUpdate() {
-    console.log("dashboard: will update")
-}
-componentDidUpdate() {
-    console.log("dashboard: did update")
-    // console.log(d3.select(this.refs.barGraph).append('svg').attr("height", "200").attr("width", "200"))
-    this.graph(this.refs.barGraph);
-}
-componentWillUnmount() {
-    console.log("dashboard: will unmount")
-}
+  //   });
+  // }
 
+  componentDidUpdate() {
+      console.log("dashboard: did update")
+      // console.log(d3.select(this.refs.barGraph).append('svg').attr("height", "200").attr("width", "200"))
+      this.graph(this.refs.barGraph);
+  }
 
   _updateGraphs(article) {
-    let writingTone = JSON.parse(article[0].writingTone)
+    let writingTone = JSON.parse(article[0].writingTone);
+    let emotionTone = JSON.parse(article[0].emotionTone);
     console.log(writingTone)
     this.setState({
       analytical: writingTone[0].score,
       confident: writingTone[1].score,
-      tentative: writingTone[2].score
+      tentative: writingTone[2].score,
+      anger: emotionTone[0].score * 100
     })
   } 
 
@@ -89,10 +88,7 @@ componentWillUnmount() {
             <div className="watson-graphs col-xs-12 col-md-9">
               <div className="row graph-1">
                 <div className="emotion-graph col-xs-12 col-md-12">
-                  <div id="anger" className="col-xs-2" height="173">
-                    <Anger />
-                  </div>
-
+                  <EmotionGraphs {...this.state} />
                 </div>
               </div>
               <div className="row graph-2">

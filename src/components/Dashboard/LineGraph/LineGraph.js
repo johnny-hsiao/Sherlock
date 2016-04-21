@@ -1,10 +1,14 @@
 import d3 from 'd3';
 import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
+import style from './style.css';
 
 
 export default class LineGraph extends Component {
     generateLineGraph(node, graphData) {
+        var div = d3.select(node);
+        div.select('svg').remove();
+        // var sorted = Object.keys(graphData).sort(function (a,b) { return a-b })
         var data = [];
         for (var key in graphData) {
             data.push({ date: graphData[key].date, close: graphData[key].frequency })
@@ -63,17 +67,18 @@ export default class LineGraph extends Component {
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+            .call(xAxis)
 
         // Add the Y Axis
         svg.append("g")
             .attr("class", "y axis")
             .call(yAxis);
 
+
     }
 
     componentDidUpdate() {
-        var allKeywords = [{date: 'Apr-21-2016', close: 5},{date: 'Apr-22-2016', close: 124},{date: 'Apr-23-2016', close: 150},{date: 'Apr-24-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},{date: 'Apr-21-2016', close: 124},];
+        var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
         this.generateLineGraph(this.refs.line_graph, allKeywords);
     }
 

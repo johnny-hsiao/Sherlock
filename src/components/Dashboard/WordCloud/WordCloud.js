@@ -6,6 +6,8 @@ import React, {Component} from 'react';
 export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
+      var div = d3.select(node);
+      div.select('svg').remove();
 
       var fill = d3.scale.category20();
 
