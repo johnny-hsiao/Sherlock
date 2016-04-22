@@ -1,0 +1,23 @@
+.bar {
+  fill: steelblue;
+}
+​
+ .bar:hover {
+  fill: #1f77b4;
+}
+​
+ .axis {
+  font: 10px sans-serif;
+}
+​
+.axis path,
+.x .axis path {
+  display: none;
+}
+​
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}

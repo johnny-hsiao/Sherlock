@@ -2,6 +2,7 @@ import index from 'd3.layout.cloud';
 import d3 from 'd3';
 import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
+import style from '../SocialGraph/style.css';
 
 export default class WordCloud extends Component {
 
@@ -11,7 +12,7 @@ export default class WordCloud extends Component {
 
       var fill = d3.scale.category20();
 
-       index().size([800, 500])
+       index().size([1220, 350])
         .words(allKeywords)
         .padding(15)
         .rotate(function(d) { return Math.random(); })
@@ -22,10 +23,11 @@ export default class WordCloud extends Component {
     function draw(words) {
       var origSize = 0;
       d3.select(node).append('svg')
-          .attr('width', 800)
-          .attr('height', 500)
+          .attr("preserveAspectRatio", "xMinYMin meet")
+          .attr("viewBox", "50 0 1200 350")
+          .classed("svg-content-responsive", true)
         .append('g')
-          .attr('transform', 'translate(400,250)')
+          .attr('transform', 'translate(650,167)')
         .selectAll('text')
           .data(words)
         .enter().append('text').style('font-weight', 'bold')
@@ -59,7 +61,7 @@ export default class WordCloud extends Component {
   };
 
   componentDidUpdate() {
-    var allKeywords = [{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},{text: 'Hello', size: 124},];
+    var allKeywords = [{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110}];
     this.generateWordle(allKeywords, this.refs.word_cloud);
   }
 

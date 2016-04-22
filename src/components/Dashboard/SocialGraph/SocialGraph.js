@@ -1,27 +1,33 @@
 import d3 from 'd3';
 import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
-import d3tip from 'd3-tip';
+import style from  './style.css';
 
 
-export default class WritingStyle extends Component {
+export default class Social extends Component {
 
-  writingGraph(node, props) {
+
+  socialGraph (node, props) {
+    var data = [{ type: 'Openness' ,value: props.openness }, 
+                    { type: 'Concientiousness', value: props.conscientiousness }, 
+                    { type: 'Extraversion', value: props.extraversion },
+                    { type: 'Agreeableness', value: props.agreeableness },
+                    { type: 'Emotional Range', value: props.emotional_range }];
+
     var div = d3.select(node);
     div.select('svg').remove();
 
-    var data = [{ type: 'Analytical' ,value: props.analytical }, 
-                { type: 'Confidence', value: props.confident }, 
-                { type: 'Tentative', value: props.tentative }];
-
-    var colors = ["#969696", "#de9ed6", "#9c9ede"];
+    var colors = ["#fdae6b", "#74c476", "#6baed6", "#9e9ac8", "#9edae5"];
 
     var margin = {top:0, right: 0, bottom: 0, left:0 },
       width = 299 - margin.left - margin.right,
       height = 173 - margin.top - margin.bottom;
 
-        var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+    // D3 scales = just math
+    // x is a function that transforms from "domain" (data) into "range" (usual pixels)
+    // domain gets set after the data loads
+    var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
 
     var y = d3.scale.linear()
         .range([height, 0]);
@@ -79,8 +85,8 @@ export default class WritingStyle extends Component {
 
       // data that needs DOM = enter() (a set/selection, not an event!)
       bars.enter().append("rect")
-        .attr("fill", function (d,i) {
-            return colors[i];
+        .attr("fill", function (d, i) {
+          return colors[i];
         })
         .attr("y", y(0))
         .attr("height", height - y(0));
@@ -93,29 +99,33 @@ export default class WritingStyle extends Component {
 
 
     }
+
+    
     draw(data);
   }
+  
+
 
   componentWillMount() {
-    console.log("writingstyle: will mount")
+    console.log("socialgraph: will mount")
   }
   componentDidMount() {
-    console.log("writingstyle: did mount")
-    this.writingGraph(this.refs.barGraph, this.props);
+    console.log("socialgraph: did mount")
+    this.socialGraph(this.refs.social, this.props);
   }
   componentWillUpdate() {
-    console.log("writingstyle: will update")
+    console.log("socialgraph: will update")
   }
   componentDidUpdate() {
-    console.log("writingstyle: did update")
-    this.writingGraph(this.refs.barGraph, this.props);
+    console.log("socialgraph: did update");
+    this.socialGraph(this.refs.social, this.props);
   }
   componentWillUnmount() {
-    console.log("writingstyle: will unmount")
+    console.log("socialgraph: will unmount")
   }
 
-  render() {
-    console.log("render writingstyle", this.props.analytical)
-    return <div ref="barGraph"></div>;
-  };
-};
+  render () {
+    return <div ref="social" ></div>;
+  }
+}
+

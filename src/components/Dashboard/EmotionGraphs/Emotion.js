@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 
 
-export default class Joy extends Component {
+export default class Emotion extends Component {
 
   liquidFillGaugeDefaultSettings() {
     return {
@@ -270,22 +270,35 @@ export default class Joy extends Component {
       return new GaugeUpdater();
   }
 
+  componentDidMount() {
+    console.log("disgust: did mount");
+
+    var config = this.liquidFillGaugeDefaultSettings();
+    config.circleColor = this.props.color;
+    config.textColor = this.props.color;
+    config.waveTextColor = '#FFFFFF';
+    config.waveColor = this.props.color;
+    config.textVertPosition = 0.5;
+    config.waveAnimateTime = 3000;
+    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
+
+  }
 
   componentDidUpdate() {
-    var joy = 45;
+    console.log("disgust: did update");
 
-    var config1 = this.liquidFillGaugeDefaultSettings();
-    config1.circleColor = '#d62728';
-    config1.textColor = '#d62728';
-    config1.waveTextColor = '#FFFFFF';
-    config1.waveColor = '#d62728';
-    config1.textVertPosition = 0.5;
-    config1.waveAnimateTime = 3000;
-    this.loadLiquidFillGauge(this.refs.joy ,'joy', joy, config1);
+    var config = this.liquidFillGaugeDefaultSettings();
+    config.circleColor = this.props.color;
+    config.textColor = this.props.color;
+    config.waveTextColor = '#FFFFFF';
+    config.waveColor = this.props.color;
+    config.textVertPosition = 0.5;
+    config.waveAnimateTime = 3000;
+    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
 
   };
 
-    render() {
-      return <div ref='joy'></div>;
-    }
+  render() {
+    return <div ref='emotion'></div>;
+  }
 };
