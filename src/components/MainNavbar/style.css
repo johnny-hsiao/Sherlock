@@ -1,11 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
 .navbar {
-  margin-top:30px;
-  margin-bottom: 30px;
   padding: 15px 0;
   background: #FFDF43;
   border: none;
+  position: fixed;
+  width: 100%;
+  z-index: 98;
 }
 
 #navbar-brand {
@@ -38,4 +39,16 @@
 
 .navbar {
   border-radius: 0px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background: #121212;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: none;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: none;
 }

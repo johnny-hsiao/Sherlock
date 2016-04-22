@@ -1,0 +1,48 @@
+tr:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+td {
+  border: none;
+  padding: 10px 20px;
+}
+
+.word-frequency-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: #eee;
+  vertical-align: middle;
+  padding-top: 10px;
+  width: 100%;
+  border-left: none;
+  height: 40px;
+  margin: 0px;
+}
+
+.table {
+  margin-bottom: 0px;
+}
+
+.table>tbody>tr>td {
+  padding: 10px 20px;
+}
+
+.table>tbody {
+  overflow-y: scroll;
+  height: 256px;
+}
+
+.word-frequency-array {
+  overflow-y: scroll;
+  height: 256px;
+}
+
+.list-group-item .word-list-item {
+  border: none;
+}
+
+.word-list {
+  width: 75%;
+}

@@ -25,17 +25,15 @@
 .word-frequency {
   border: 2px solid #eee;
   border-left: none;
-  overflow-x: inherit;
-  overflow-y: auto;
-  height: 300px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .article-list {
+  padding-left: 0px;
+  padding-right: 0px;
   border: 2px solid #eee;
   border-right: none;
-  overflow-x: inherit;
-  overflow-y: auto;
-  height: 350px;
 }
 
 .watson-graphs {

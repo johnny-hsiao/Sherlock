@@ -7,18 +7,19 @@ import style from '../SocialGraph/style.css';
 export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
-      var div = d3.select(node);
-      div.select('svg').remove();
 
-      var fill = d3.scale.category20();
+    var div = d3.select(node);
+    div.select('svg').remove();
 
-       index().size([1220, 350])
-        .words(allKeywords)
-        .padding(15)
-        .rotate(function(d) { return Math.random(); })
-        .fontSize(function(d) { return d.size/3; })
-        .on('end', draw)
-        .start();
+    var fill = d3.scale.category20();
+
+     index().size([1220, 350])
+      .words(allKeywords)
+      .padding(15)
+      .rotate(function(d) { return Math.random(); })
+      .fontSize(function(d) { return d.size/3; })
+      .on('end', draw)
+      .start();
 
     function draw(words) {
       var origSize = 0;

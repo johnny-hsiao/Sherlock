@@ -1,6 +1,6 @@
 .main-container {
   padding: 0px 15px;
-  margin-bottom: 30px;
+  margin: 110px 0 30px 0;
 }
 
 .row {
@@ -11,9 +11,9 @@
 
 .side-bar {
   padding: 0px;
+  position: fixed;
 }
 
 .dashboard {
-  overflow-y: auto;
-  height: 600px;
+  float: right;
 }

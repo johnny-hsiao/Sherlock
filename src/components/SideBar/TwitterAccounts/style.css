@@ -9,12 +9,19 @@
   padding-left: 20px;
 }
 
-.list-group-item {
+.account-list-item {
   border-left: none;
   border-right: none;
   outline: none;
   padding: 10px 0px;
   padding-left: 20px;
+}
+
+.account-list {
+  height: 250px;
+  margin: 0px;
+  overflow-x: inherit;
+  overflow-y: auto;
 }
 
 .list-group-item:last-child {
@@ -25,13 +32,6 @@
 .list-group-item:first-child {
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
-}
-
-.list-group {
-  margin: 0px;
-  overflow-x: inherit;
-  overflow-y: auto;
-  height: 180px;
 }
 
 .accounts-heading {

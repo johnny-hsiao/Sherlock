@@ -6,6 +6,8 @@ import EmotionGraphs from './EmotionGraphs/EmotionGraphs';
 import LineGraph from './LineGraph/LineGraph';
 import SocialGraph from './SocialGraph/SocialGraph';
 import WritingStyle from './WritingStyle/WritingStyle';
+import WordFrequency from './WordFrequency/WordFrequency';
+import ArticleList from './ArticleList/ArticleList';
 var axios = require('axios');
 
 import style from './style.css';
@@ -36,6 +38,7 @@ export default class Dashboard extends Component {
     this._updateToneGraphs = this._updateToneGraphs.bind(this);
     this._updateLineGraph = this._updateLineGraph.bind(this);
     this._updateCategoryCloudData = this._updateCategoryCloudData.bind(this);
+    
     this.articleAPICall = this.articleAPICall.bind(this);
     this.categoryLineAPICall = this.categoryLineAPICall.bind(this);
     this.categoryCloudAPICall = this.categoryCloudAPICall.bind(this);
@@ -53,7 +56,7 @@ export default class Dashboard extends Component {
   }
 
   articleAPICall() {
-    axios.get('http://127.0.0.1:5000/articles/1500')
+    axios.get('http://127.0.0.1:5000/articles/1502')
     .then((res) => {
       console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
       this._updateToneGraphs(res.data);
@@ -80,6 +83,7 @@ export default class Dashboard extends Component {
     console.log("dashboard: did mount");
     this.articleAPICall();
     this.categoryLineAPICall();
+    this.categoryCloudAPICall();
   }
 
   _updateLineGraph(keywordData) {
@@ -137,14 +141,13 @@ export default class Dashboard extends Component {
             </div>
 
             <div className="word-frequency col-xs-12 col-md-3">
-              <p>WORD FREQUENCY</p>
-              
+              <WordFrequency /> 
             </div>
           </div>
 
           <div className="row" id="row3">
             <div className="article-list col-xs-12 col-md-3">
-              <p>ARTICLE LIST</p>
+              <ArticleList />
               <button onClick={ this.articleAPICall } >Change state!</button>
               <button onClick={ this.categoryLineAPICall } >Draw line!</button>
               <button onClick={ this.categoryCloudAPICall } >Draw Cloud!</button>
@@ -159,12 +162,12 @@ export default class Dashboard extends Component {
                 </div>
               </div>
               <div className="row graph-2">
-                <div className="social-graph col-xs-6 col-md-6">
+                <div className="social-graph col-xs-7 col-md-7">
                   { this.state.openness &&
                   <SocialGraph {...this.state} />
                   }
                 </div>
-                <div className="writing-style col-xs-6 col-md-6">
+                <div className="writing-style col-xs-5 col-md-5">
                   { this.state.analytical &&
                   <WritingStyle { ...this.state } />
                   }

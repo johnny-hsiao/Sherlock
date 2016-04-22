@@ -1,0 +1,17 @@
+.article-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: #eee;
+  vertical-align: middle;
+  padding-top: 10px;
+  width: 100%;
+  border-left: none;
+  height: 40px;
+  margin: 0px;
+}
+
+.article-array {
+  overflow-y: scroll;
+  height: 306px;
+}
