@@ -8,7 +8,6 @@ import SocialGraph from './SocialGraph/SocialGraph';
 import WritingStyle from './WritingStyle/WritingStyle';
 var axios = require('axios');
 
-
 import style from './style.css';
 
 export default class Dashboard extends Component {
@@ -29,48 +28,73 @@ export default class Dashboard extends Component {
       conscientiousness: undefined,
       extraversion: undefined,
       agreeableness: undefined,
-      emotional_range: undefined
+      emotional_range: undefined,
+
+      keywordData: undefined,
+      categoryWordCloudData: undefined
     }
-    this._updateGraphs = this._updateGraphs.bind(this);
-    this.apiCall = this.apiCall.bind(this);
+    this._updateToneGraphs = this._updateToneGraphs.bind(this);
+    this._updateLineGraph = this._updateLineGraph.bind(this);
+    this._updateCategoryCloudData = this._updateCategoryCloudData.bind(this);
+    this.articleAPICall = this.articleAPICall.bind(this);
+    this.categoryLineAPICall = this.categoryLineAPICall.bind(this);
+    this.categoryCloudAPICall = this.categoryCloudAPICall.bind(this);
   }
   componentWillMount() {
     console.log("dashboard: will mount");
   }
 
-
   componentWillUpdate() {
     console.log("dashboard: will update");
-    // axios.get('http://127.0.0.1:5000/articles/1043')
-    // .then((res) => {
-    //   console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score)
-    //   this._updateGraphs(res.data)
-   
-    // });
   }
 
   componentDidUpdate() {
-      console.log("dashboard: did update")
-      // console.log(d3.select(this.refs.barGraph).append('svg').attr("height", "200").attr("width", "200"))
-      // this.graph(this.refs.barGraph);
-
+    console.log("dashboard: did update")
   }
 
-  apiCall() {
+  articleAPICall() {
     axios.get('http://127.0.0.1:5000/articles/1500')
     .then((res) => {
-      console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score)
-      this._updateGraphs(res.data)
+      console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
+      this._updateToneGraphs(res.data);
+    });
+  }
+
+  categoryLineAPICall() {
+    axios.get('http://127.0.0.1:5000/categories/3/word_line/works')
+    .then((res) => {
+      console.log("inside dashboard line", res.data.keywords);
+      this._updateLineGraph(res.data.keywords);
+    });
+  }
+
+  categoryCloudAPICall() {
+    axios.get('http://127.0.0.1:5000/categories/3/word_cloud')
+    .then((res) => {
+      console.log("inside dashboard cloud", res.data);
+      this._updateCategoryCloudData(res.data);
     });
   }
 
   componentDidMount() {
     console.log("dashboard: did mount");
-    this.apiCall();
-
+    this.articleAPICall();
+    this.categoryLineAPICall();
   }
 
-  _updateGraphs(article) {
+  _updateLineGraph(keywordData) {
+    this.setState({
+      keywordData: keywordData
+    })
+  }
+
+  _updateCategoryCloudData(keywordData) {
+    this.setState({
+      categoryWordCloudData: keywordData
+    })
+  }
+
+  _updateToneGraphs(article) {
     let writingTone = JSON.parse(article[0].writingTone);
     let emotionTone = JSON.parse(article[0].emotionTone);
     let socialTone = JSON.parse(article[0].socialTone);
@@ -94,32 +118,36 @@ export default class Dashboard extends Component {
   } 
 
   render() {
-
-    console.log('...', this.state.anger)
     return (
       <div>
         <div className="dashboard-container col-xs-12">
           <div className="row">
             <div className="word-cloud svg-container col-xs-12 col-md-12">
-              <WordCloud />
+              { this.state.categoryWordCloudData &&
+                  <WordCloud {...this.state} />
+                  }
             </div>
           </div>
 
           <div className="row" id="row2">
             <div className="line-graph col-xs-12 col-md-9">
-              <LineGraph />
+              { this.state.keywordData &&
+                  <LineGraph {...this.state} />
+                  }
             </div>
 
             <div className="word-frequency col-xs-12 col-md-3">
               <p>WORD FREQUENCY</p>
+              
             </div>
           </div>
 
           <div className="row" id="row3">
             <div className="article-list col-xs-12 col-md-3">
               <p>ARTICLE LIST</p>
-              {console.log("before button call", this)}
-              <button onClick={ this.apiCall } >Change state!</button>
+              <button onClick={ this.articleAPICall } >Change state!</button>
+              <button onClick={ this.categoryLineAPICall } >Draw line!</button>
+              <button onClick={ this.categoryCloudAPICall } >Draw Cloud!</button>
             </div>
 
             <div className="watson-graphs col-xs-12 col-md-9">

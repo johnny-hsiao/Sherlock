@@ -77,9 +77,14 @@ export default class LineGraph extends Component {
 
     }
 
+    componentDidMount() {
+        // var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
+        this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
+    }
+
     componentDidUpdate() {
-        var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
-        this.generateLineGraph(this.refs.line_graph, allKeywords);
+        // var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
+        this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
     }
 
     render() {

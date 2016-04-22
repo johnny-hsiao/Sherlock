@@ -281,7 +281,6 @@ export default class Emotion extends Component {
     config.textVertPosition = 0.5;
     config.waveAnimateTime = 3000;
     this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
-
   }
 
   componentDidUpdate() {
@@ -295,7 +294,6 @@ export default class Emotion extends Component {
     config.textVertPosition = 0.5;
     config.waveAnimateTime = 3000;
     this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
-
   };
 
   render() {

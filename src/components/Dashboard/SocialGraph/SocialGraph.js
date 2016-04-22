@@ -3,16 +3,14 @@ import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import style from  './style.css';
 
-
 export default class Social extends Component {
-
 
   socialGraph (node, props) {
     var data = [{ type: 'Openness' ,value: props.openness }, 
-                    { type: 'Concientiousness', value: props.conscientiousness }, 
-                    { type: 'Extraversion', value: props.extraversion },
-                    { type: 'Agreeableness', value: props.agreeableness },
-                    { type: 'Emotional Range', value: props.emotional_range }];
+                { type: 'Concientiousness', value: props.conscientiousness }, 
+                { type: 'Extraversion', value: props.extraversion },
+                { type: 'Agreeableness', value: props.agreeableness },
+                { type: 'Emotional Range', value: props.emotional_range }];
 
     var div = d3.select(node);
     div.select('svg').remove();
@@ -96,16 +94,11 @@ export default class Social extends Component {
         .attr("width", x.rangeBand()) // constant, so no callback function(d) here
         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); }); // flip the height, because y's domain is bottom up, but SVG renders top down
-
-
     }
 
-    
     draw(data);
   }
   
-
-
   componentWillMount() {
     console.log("socialgraph: will mount")
   }
