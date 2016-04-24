@@ -4,35 +4,35 @@ import Grid from 'react-bootstrap/lib/Grid';
 
 import style from './style.css';
 
-var articleArray = [
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-  {
-    article: 'default',
-  },
-];
+  let articleArray = [
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+    {
+      article: 'default',
+    },
+  ];
 
 
 export default class ArticleArray extends Component {
@@ -41,6 +41,7 @@ export default class ArticleArray extends Component {
     return (
       <div className="article-array">
         <table className="table">
+          <tbody>
           {articleArray.map((result, i) =>
             <tr key={result.article + i}>
               <td className="word-list">
@@ -48,6 +49,7 @@ export default class ArticleArray extends Component {
               </td>
             </tr>
           )}
+          </tbody>
         </table>
       </div>
     );

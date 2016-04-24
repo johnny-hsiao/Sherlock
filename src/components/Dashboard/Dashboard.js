@@ -1,16 +1,17 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import Grid from 'react-bootstrap/lib/Grid';
+import style from './style.css';
+import axios from 'axios';
+
 import WordCloud from './WordCloud/WordCloud';
 import EmotionGraphs from './EmotionGraphs/EmotionGraphs';
 import LineGraph from './LineGraph/LineGraph';
 import SocialGraph from './SocialGraph/SocialGraph';
 import WritingStyle from './WritingStyle/WritingStyle';
+
 import WordFrequency from './WordFrequency/WordFrequency';
 import ArticleList from './ArticleList/ArticleList';
-var axios = require('axios');
-
-import style from './style.css';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -38,10 +39,11 @@ export default class Dashboard extends Component {
     this._updateToneGraphs = this._updateToneGraphs.bind(this);
     this._updateLineGraph = this._updateLineGraph.bind(this);
     this._updateCategoryCloudData = this._updateCategoryCloudData.bind(this);
-    
-    this.articleAPICall = this.articleAPICall.bind(this);
+
+    this.articleToneAPICall = this.articleToneAPICall.bind(this);
     this.categoryLineAPICall = this.categoryLineAPICall.bind(this);
     this.categoryCloudAPICall = this.categoryCloudAPICall.bind(this);
+    this.categoryArticlesAPICall = this.categoryArticlesAPICall.bind(this);
   }
   componentWillMount() {
     console.log("dashboard: will mount");
@@ -55,8 +57,8 @@ export default class Dashboard extends Component {
     console.log("dashboard: did update")
   }
 
-  articleAPICall() {
-    axios.get('http://127.0.0.1:5000/articles/1502')
+  articleToneAPICall() {
+    axios.get('http://127.0.0.1:5000/articles/822')
     .then((res) => {
       console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
       this._updateToneGraphs(res.data);
@@ -79,9 +81,17 @@ export default class Dashboard extends Component {
     });
   }
 
+  categoryArticlesAPICall() {
+    axios.get('http://127.0.0.1:5000/categories/3/articles')
+    .then((res) => {
+      console.log("inside dashboard cloud", res.data);
+      // this._updateCategoryCloudData(res.data);
+    });
+  }
+
   componentDidMount() {
     console.log("dashboard: did mount");
-    this.articleAPICall();
+    this.articleToneAPICall();
     this.categoryLineAPICall();
     this.categoryCloudAPICall();
   }
@@ -128,7 +138,7 @@ export default class Dashboard extends Component {
           <div className="row">
             <div className="word-cloud svg-container col-xs-12 col-md-12">
               { this.state.categoryWordCloudData &&
-                  <WordCloud {...this.state} />
+                  <WordCloud { ...this.state } />
                   }
             </div>
           </div>
@@ -136,19 +146,21 @@ export default class Dashboard extends Component {
           <div className="row" id="row2">
             <div className="line-graph col-xs-12 col-md-9">
               { this.state.keywordData &&
-                  <LineGraph {...this.state} />
+                  <LineGraph { ...this.state } />
                   }
             </div>
 
             <div className="word-frequency col-xs-12 col-md-3">
-              <WordFrequency /> 
+              { this.state.categoryWordCloudData &&
+                  <WordFrequency { ...this.state } />
+                  }
             </div>
           </div>
 
           <div className="row" id="row3">
             <div className="article-list col-xs-12 col-md-3">
               <ArticleList />
-              <button onClick={ this.articleAPICall } >Change state!</button>
+              <button onClick={ this.articleToneAPICall } >Change state!</button>
               <button onClick={ this.categoryLineAPICall } >Draw line!</button>
               <button onClick={ this.categoryCloudAPICall } >Draw Cloud!</button>
             </div>
@@ -157,14 +169,14 @@ export default class Dashboard extends Component {
               <div className="row graph-1">
                 <div className="emotion-graph col-xs-12 col-md-12">
                   { this.state.anger &&
-                  <EmotionGraphs {...this.state} />
+                  <EmotionGraphs { ...this.state } />
                   }
                 </div>
               </div>
               <div className="row graph-2">
                 <div className="social-graph col-xs-7 col-md-7">
                   { this.state.openness &&
-                  <SocialGraph {...this.state} />
+                  <SocialGraph { ...this.state } />
                   }
                 </div>
                 <div className="writing-style col-xs-5 col-md-5">
@@ -175,7 +187,6 @@ export default class Dashboard extends Component {
               </div>
             </div>
           </div>
-
         </div>
       </div>
     );

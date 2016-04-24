@@ -7,6 +7,10 @@ import style from '../SocialGraph/style.css';
 export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
+    var scaledFonts = [];
+    allKeywords.forEach(function (keyword) {
+      scaledFonts.push({ text: keyword.text, size: keyword.size/15 });
+    })
 
     var div = d3.select(node);
     div.select('svg').remove();
@@ -14,10 +18,10 @@ export default class WordCloud extends Component {
     var fill = d3.scale.category20();
 
      index().size([1220, 350])
-      .words(allKeywords)
+      .words(scaledFonts)
       .padding(15)
       .rotate(function(d) { return Math.random(); })
-      .fontSize(function(d) { return d.size/3; })
+      .fontSize(function(d) { return d.size; })
       .on('end', draw)
       .start();
 

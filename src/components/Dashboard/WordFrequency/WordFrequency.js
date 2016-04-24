@@ -11,7 +11,7 @@ export default class WordFrequency extends Component {
     return (
       <div>
         <h5 className="word-frequency-title"> Word Frequency </h5>
-        <WordFreqArray />
+        <WordFreqArray {...this.props} />
       </div>
     );
   }
