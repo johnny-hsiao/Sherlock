@@ -44,10 +44,9 @@ var tip = d3tip()
   })
 
 var svg = d3.select(node).append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+          .attr("viewBox", "0 0 455 225")
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(50,0)");
 
 svg.call(tip);
 
@@ -57,7 +56,7 @@ svg.call(tip);
 
   svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0,150)")
+      .attr("transform", "translate(0,175)")
       .call(xAxis);
 
 
@@ -70,7 +69,7 @@ svg.call(tip);
       .attr("x", function(d) { return x(d.type); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value - 8); })
+      .attr("height", function(d) { return height - y(d.value); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide);
 

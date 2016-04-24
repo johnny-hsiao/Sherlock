@@ -58,7 +58,7 @@ export default class Dashboard extends Component {
   }
 
   articleToneAPICall() {
-    axios.get('http://127.0.0.1:5000/articles/822')
+    axios.get('http://127.0.0.1:5000/articles/1000')
     .then((res) => {
       console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
       this._updateToneGraphs(res.data);

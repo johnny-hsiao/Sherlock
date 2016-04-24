@@ -29,10 +29,10 @@ export default class WordCloud extends Component {
       var origSize = 0;
       d3.select(node).append('svg')
           .attr("preserveAspectRatio", "xMinYMin meet")
-          .attr("viewBox", "50 0 1200 350")
+          .attr("viewBox", "50 0 1468.5 346")
           .classed("svg-content-responsive", true)
         .append('g')
-          .attr('transform', 'translate(650,167)')
+          .attr('transform', 'translate(734,175)')
         .selectAll('text')
           .data(words)
         .enter().append('text').style('font-weight', 'bold')
