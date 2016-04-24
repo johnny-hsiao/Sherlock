@@ -34,16 +34,18 @@ export default class Dashboard extends Component {
       emotional_range: undefined,
 
       keywordData: undefined,
-      categoryWordCloudData: undefined
+      categoryWordCloudData: undefined,
+      categoryArticleListData: undefined
     }
     this._updateToneGraphs = this._updateToneGraphs.bind(this);
     this._updateLineGraph = this._updateLineGraph.bind(this);
     this._updateCategoryCloudData = this._updateCategoryCloudData.bind(this);
+    this._updateCategoryArticleListData = this._updateCategoryArticleListData.bind(this);
 
-    this.articleToneAPICall = this.articleToneAPICall.bind(this);
-    this.categoryLineAPICall = this.categoryLineAPICall.bind(this);
-    this.categoryCloudAPICall = this.categoryCloudAPICall.bind(this);
-    this.categoryArticlesAPICall = this.categoryArticlesAPICall.bind(this);
+    this._articleToneAPICall = this._articleToneAPICall.bind(this);
+    this._categoryLineAPICall = this._categoryLineAPICall.bind(this);
+    this._categoryCloudAPICall = this._categoryCloudAPICall.bind(this);
+    this._categoryArticlesAPICall = this._categoryArticlesAPICall.bind(this);
   }
   componentWillMount() {
     console.log("dashboard: will mount");
@@ -57,7 +59,7 @@ export default class Dashboard extends Component {
     console.log("dashboard: did update")
   }
 
-  articleToneAPICall() {
+  _articleToneAPICall() {
     axios.get('http://127.0.0.1:5000/articles/822')
     .then((res) => {
       console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
@@ -65,7 +67,7 @@ export default class Dashboard extends Component {
     });
   }
 
-  categoryLineAPICall() {
+  _categoryLineAPICall() {
     axios.get('http://127.0.0.1:5000/categories/3/word_line/works')
     .then((res) => {
       console.log("inside dashboard line", res.data.keywords);
@@ -73,7 +75,7 @@ export default class Dashboard extends Component {
     });
   }
 
-  categoryCloudAPICall() {
+  _categoryCloudAPICall() {
     axios.get('http://127.0.0.1:5000/categories/3/word_cloud')
     .then((res) => {
       console.log("inside dashboard cloud", res.data);
@@ -81,19 +83,20 @@ export default class Dashboard extends Component {
     });
   }
 
-  categoryArticlesAPICall() {
+  _categoryArticlesAPICall() {
     axios.get('http://127.0.0.1:5000/categories/3/articles')
     .then((res) => {
-      console.log("inside dashboard cloud", res.data);
-      // this._updateCategoryCloudData(res.data);
+      // console.log("inside dashboard category articles", res.data);
+      this._updateCategoryArticleListData(res.data);
     });
   }
 
   componentDidMount() {
     console.log("dashboard: did mount");
-    this.articleToneAPICall();
-    this.categoryLineAPICall();
-    this.categoryCloudAPICall();
+    this._articleToneAPICall();
+    this._categoryLineAPICall();
+    this._categoryCloudAPICall();
+    this._categoryArticlesAPICall();
   }
 
   _updateLineGraph(keywordData) {
@@ -105,6 +108,12 @@ export default class Dashboard extends Component {
   _updateCategoryCloudData(keywordData) {
     this.setState({
       categoryWordCloudData: keywordData
+    })
+  }
+
+  _updateCategoryArticleListData(articleListData) {
+    this.setState({
+      categoryArticleListData: articleListData
     })
   }
 
@@ -159,10 +168,12 @@ export default class Dashboard extends Component {
 
           <div className="row" id="row3">
             <div className="article-list col-xs-12 col-md-3">
-              <ArticleList />
-              <button onClick={ this.articleToneAPICall } >Change state!</button>
-              <button onClick={ this.categoryLineAPICall } >Draw line!</button>
-              <button onClick={ this.categoryCloudAPICall } >Draw Cloud!</button>
+              { this.state.categoryArticleListData &&
+                <ArticleList { ...this.state } />
+              }
+              <button onClick={ this._articleToneAPICall } >Change state!</button>
+              <button onClick={ this._categoryLineAPICall } >Draw line!</button>
+              <button onClick={ this._categoryCloudAPICall } >Draw Cloud!</button>
             </div>
 
             <div className="watson-graphs col-xs-12 col-md-9">

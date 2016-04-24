@@ -11,7 +11,7 @@ export default class ArticleList extends Component {
     return (
       <div>
         <h5 className="article-title"> Article List </h5>
-        <ArticleArray />
+        <ArticleArray { ...this.props } />
       </div>
     );
   }
