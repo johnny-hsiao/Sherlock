@@ -39,7 +39,7 @@ export default class Dashboard extends Component {
 
       currentWord: undefined,
       currentArticle: undefined
-    }
+    };
   }
   componentWillMount() {
     console.log("dashboard: will mount");
@@ -51,8 +51,9 @@ export default class Dashboard extends Component {
   }
 
   componentDidUpdate() {
-    console.log("dashboard: did update")
+    console.log("dashboard: did update");
     this._categoryLineAPICall();
+    this._articleToneAPICall();
   }
 
   componentDidMount() {
@@ -64,10 +65,12 @@ export default class Dashboard extends Component {
   }
 
   _articleToneAPICall = () => {
-    axios.get('http://127.0.0.1:5000/articles/916')
-    .then((res) => {
-      this._updateToneGraphs(res.data);
-    });
+    if (this.state.currentArticle) {
+      axios.get(`http://127.0.0.1:5000/articles/${ this.state.currentArticle }`)
+      .then((res) => {
+        this._updateToneGraphs(res.data)
+      })
+    }
   }
 
   _categoryLineAPICall = () => {
@@ -100,6 +103,13 @@ export default class Dashboard extends Component {
     })
   }
 
+  _updateCurrentArticle = (newArticle) => {
+    console.log(newArticle, "set in dash")
+    this.setState({
+      currentArticle: newArticle
+    })
+  }
+
   _updateLineGraph = (keywordData) => {
     if (this.state.currentWord) {
       this.setState({
@@ -122,26 +132,30 @@ export default class Dashboard extends Component {
   }
 
   _updateToneGraphs = (article) => {
-    let writingTone = JSON.parse(article[0].writingTone);
-    let emotionTone = JSON.parse(article[0].emotionTone);
-    let socialTone = JSON.parse(article[0].socialTone);
-    this.setState({
-      analytical: writingTone[0].score * 100,
-      confident: writingTone[1].score * 100,
-      tentative: writingTone[2].score * 100,
+    if (this.state.currentArticle) {
+      let writingTone = JSON.parse(article[0].writingTone);
+      let emotionTone = JSON.parse(article[0].emotionTone);
+      let socialTone = JSON.parse(article[0].socialTone);
+      this.setState({
+        currentArticle: undefined,
+        
+        analytical: writingTone[0].score * 100,
+        confident: writingTone[1].score * 100,
+        tentative: writingTone[2].score * 100,
 
-      anger: emotionTone[0].score * 100,
-      disgust: emotionTone[1].score * 100,
-      fear: emotionTone[2].score * 100,
-      joy: emotionTone[3].score * 100,
-      sadness: emotionTone[4].score * 100,
+        anger: emotionTone[0].score * 100,
+        disgust: emotionTone[1].score * 100,
+        fear: emotionTone[2].score * 100,
+        joy: emotionTone[3].score * 100,
+        sadness: emotionTone[4].score * 100,
 
-      openness: socialTone[0].score * 100,
-      conscientiousness: socialTone[1].score * 100,
-      extraversion: socialTone[2].score * 100,
-      agreeableness: socialTone[3].score * 100,
-      emotional_range: socialTone[4].score * 100
-    })
+        openness: socialTone[0].score * 100,
+        conscientiousness: socialTone[1].score * 100,
+        extraversion: socialTone[2].score * 100,
+        agreeableness: socialTone[3].score * 100,
+        emotional_range: socialTone[4].score * 100
+      })
+    }
   } 
 
   render() {
@@ -173,7 +187,7 @@ export default class Dashboard extends Component {
           <div className="row" id="row3">
             <div className="article-list col-xs-12 col-md-3">
               { this.state.categoryArticleListData &&
-                <ArticleList { ...this.state } />
+                <ArticleList { ...this.state } onChange={ this._updateCurrentArticle } />
               }
 
             </div>
