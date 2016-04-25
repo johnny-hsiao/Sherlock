@@ -37,7 +37,8 @@ export default class Dashboard extends Component {
       categoryWordCloudData: undefined,
       categoryArticleListData: undefined,
 
-      currentWord: undefined
+      currentWord: undefined,
+      currentArticle: undefined
     }
   }
   componentWillMount() {
@@ -51,7 +52,7 @@ export default class Dashboard extends Component {
 
   componentDidUpdate() {
     console.log("dashboard: did update")
-    // this._categoryLineAPICall();
+    this._categoryLineAPICall();
   }
 
   componentDidMount() {
@@ -100,9 +101,12 @@ export default class Dashboard extends Component {
   }
 
   _updateLineGraph = (keywordData) => {
-    this.setState({
-      keywordData: keywordData
-    })
+    if (this.state.currentWord) {
+      this.setState({
+        currentWord: undefined,
+        keywordData: keywordData
+      })
+    }
   }
 
   _updateCategoryCloudData = (keywordData) => {
