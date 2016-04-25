@@ -36,7 +36,7 @@ export default class LineGraph extends Component {
         var valueline = d3.svg.line()
             .x(function(d) { return x(d.date); })
             .y(function(d) { return y(d.close); });
-            
+
         // Adds the svg canvas
         var svg = d3.select(node).append("svg")
             .attr("preserveAspectRatio", "xMinYMin meet")
@@ -66,8 +66,8 @@ export default class LineGraph extends Component {
         // Add the X Axis
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
+            .attr("transform", "translate(15," + height + ")")
+            .call(xAxis);
 
         // Add the Y Axis
         svg.append("g")

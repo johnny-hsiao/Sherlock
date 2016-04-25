@@ -2,6 +2,7 @@ import d3 from 'd3';
 import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import d3tip from 'd3-tip';
+import style from './style.css';
 
 
 export default class WritingStyle extends Component {
@@ -16,68 +17,65 @@ export default class WritingStyle extends Component {
 
     var colors = ["#969696", "#de9ed6", "#9c9ede"];
 
-        var div = d3.select(node);
-    div.select('svg').remove();
+    var margin = {top: 10, right: 0, bottom: 0, left: 0},
+      width = 350,
+      height = 173 - margin.top - margin.bottom;
 
-  var margin = {top: 5, right: 0, bottom: 0, left: 0},
-    width = 350,
-    height = 173 - margin.top - margin.bottom;
+    var formatPercent = d3.format(".0%");
 
-var formatPercent = d3.format(".0%");
+    var x = d3.scale.ordinal()
+      .rangeRoundBands([0, width], .1);
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+    var y = d3.scale.linear()
+      .range([height, 0]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
 
 
-var tip = d3tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "<span style='color:white'>" + Math.round(d.value) + "</span>";
-  })
+    var tip = d3tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+      return "<span style='color:white'>" + Math.round(d.value) + "%</span>";
+    });
 
-var svg = d3.select(node).append("svg")
-          .attr("viewBox", "0 0 455 225")
-  .append("g")
-    .attr("transform", "translate(50,0)");
+    var svg = d3.select(node).append("svg")
+        .attr("viewBox", "0 0 455 225")
+        .append("g")
+        .attr("transform", "translate(50,10)");
 
-svg.call(tip);
-
-
-  x.domain(data.map(function(d) { return d.type; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0,175)")
-      .call(xAxis);
+    svg.call(tip);
 
 
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("fill", function(d, i){
-        return colors[i];
-      })
-      .attr("x", function(d) { return x(d.type); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+    x.domain(data.map(function(d) { return d.type; }));
+    y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0,175)")
+        .call(xAxis);
 
 
-    function type(d) {
-      d.frequency = +d.frequency;
-      return d;
-    }
+    svg.selectAll(".bar")
+        .data(data)
+      .enter().append("rect")
+        .attr("fill", function(d, i){
+          return colors[i];
+        })
+        .attr("x", function(d) { return x(d.type); })
+        .attr("width", x.rangeBand())
+        .attr("y", function(d) { return y(d.value); })
+        .attr("height", function(d) { return height - y(d.value); })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+
+
+      function type(d) {
+        d.value = +d.value;
+        return d;
+      }
   }
   
 
