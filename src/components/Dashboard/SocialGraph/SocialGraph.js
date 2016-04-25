@@ -43,7 +43,7 @@ export default class Social extends Component {
       .offset([-10, 0])
       .html(function(d) {
 
-        return "<span style='color:white'>" + Math.round(d.value) + "</span>";
+        return "<span style='color:white'>" + Math.round(d.value) + "%</span>";
       });
 
     var svg = d3.select(node).append("svg")
