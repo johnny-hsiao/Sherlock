@@ -11,8 +11,8 @@ body {
 
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 2.5px;
+  stroke: #000000;
+  stroke-width: 4.5px;
 }
 
 .x.axis {
