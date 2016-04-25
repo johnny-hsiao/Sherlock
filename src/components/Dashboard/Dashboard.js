@@ -171,29 +171,34 @@ export default class Dashboard extends Component {
               { this.state.categoryArticleListData &&
                 <ArticleList { ...this.state } />
               }
-              <button onClick={ this._articleToneAPICall } >Change state!</button>
-              <button onClick={ this._categoryLineAPICall } >Draw line!</button>
-              <button onClick={ this._categoryCloudAPICall } >Draw Cloud!</button>
+
             </div>
 
             <div className="watson-graphs col-xs-12 col-md-9">
               <div className="row graph-1">
-                <div className="emotion-graph col-xs-12 col-md-12">
+                <h5 className="sentiment-title">Sentiment Analysis</h5>
+                <div className="emotion-graph col-xs-12">
                   { this.state.anger &&
                   <EmotionGraphs { ...this.state } />
                   }
                 </div>
               </div>
               <div className="row graph-2">
-                <div className="social-graph col-xs-7 col-md-7">
-                  { this.state.openness &&
-                  <SocialGraph { ...this.state } />
-                  }
+                <div className="social-graph col-xs-7">
+                  <h5 className="social-title">Social Summary</h5>
+                  <div>
+                    { this.state.openness &&
+                    <SocialGraph { ...this.state } />
+                    }
+                  </div>
                 </div>
-                <div className="writing-style col-xs-5 col-md-5">
-                  { this.state.analytical &&
-                  <WritingStyle { ...this.state } />
-                  }
+                <div className="language-style col-xs-5">
+                  <h5 className="language-title">Language Style</h5>
+                  <div>
+                    { this.state.analytical &&
+                    <WritingStyle { ...this.state } />
+                    }
+                  </div>
                 </div>
               </div>
             </div>

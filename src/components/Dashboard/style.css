@@ -38,28 +38,37 @@
 
 .watson-graphs {
   border: 2px solid #eee;
-  height: 350px;
+  height: 450px;
   padding: 0px;
-}
-
-.emotion-graph {
-  height: 173px;
-}
-
-.social-graph {
-  height: 173px;
-  border-right: 2px solid #eee;
-}
-
-.writing-style {
-  height: 173px;
 }
 
 .graph-1 {
   border-bottom: 2px solid #eee;
-  height: 175px;
+  height: 210px;
 }
 
-.graph-2 {
-  height: 175px;
+.social-graph {
+  height: 258px;
+  border-right: 2px solid #eee;
+  padding: 0px;
 }
+
+.language-style {
+  padding: 0px;
+}
+
+.sentiment-title {
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.language-title {
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+.social-title {
+  padding-left: 20px;
+  font-weight: bold;
+}
+
