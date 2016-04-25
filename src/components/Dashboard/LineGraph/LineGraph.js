@@ -50,8 +50,6 @@ export default class LineGraph extends Component {
         data.forEach(function(d) {
             d.date = parseDate(d.date);
             d.close = +d.close;
-
-            // console.log("in linegraph", d.date, d.close)
         });
 
         // Scale the range of the data
@@ -78,17 +76,15 @@ export default class LineGraph extends Component {
     }
 
     componentDidMount() {
-        // var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
-        this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
+      this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
     }
 
     componentDidUpdate() {
-        // var allKeywords = [{date: '19-Apr-16', frequency: 5},{date: '20-Apr-16', frequency: 124},{date: '22-Apr-16', frequency: 150},{date: '26-Apr-16', frequency: 124},{date: '29-Apr-16', frequency: 124}];
-        this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
+      this.generateLineGraph(this.refs.line_graph, this.props.keywordData);
     }
 
     render() {
-        return <div ref="line_graph"></div>
+      return <div ref="line_graph"></div>
     }
 
 }

@@ -271,7 +271,7 @@ export default class Emotion extends Component {
   }
 
   componentDidMount() {
-    console.log("disgust: did mount");
+    // console.log("disgust: did mount");
 
     var config = this.liquidFillGaugeDefaultSettings();
     config.circleColor = this.props.color;
@@ -284,7 +284,7 @@ export default class Emotion extends Component {
   }
 
   componentDidUpdate() {
-    console.log("disgust: did update");
+    // console.log("disgust: did update");
 
     var config = this.liquidFillGaugeDefaultSettings();
     config.circleColor = this.props.color;

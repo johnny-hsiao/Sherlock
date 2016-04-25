@@ -16,12 +16,12 @@ export default class WritingStyle extends Component {
 
     var colors = ["#969696", "#de9ed6", "#9c9ede"];
 
-        var div = d3.select(node);
+    var div = d3.select(node);
     div.select('svg').remove();
 
-  var margin = {top: 5, right: 0, bottom: 0, left: 0},
-    width = 350,
-    height = 173 - margin.top - margin.bottom;
+    var margin = {top: 5, right: 0, bottom: 0, left: 0},
+      width = 350,
+      height = 173 - margin.top - margin.bottom;
 
 var formatPercent = d3.format(".0%");
 
