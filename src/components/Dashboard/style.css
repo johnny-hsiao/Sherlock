@@ -48,7 +48,7 @@
 }
 
 .social-graph {
-  height: 258px;
+  height: 237px;
   border-right: 2px solid #eee;
   padding: 0px;
 }
@@ -63,11 +63,13 @@
 }
 
 .language-title {
+  margin-bottom: 20px;
   padding-left: 20px;
   font-weight: bold;
 }
 
 .social-title {
+  margin-bottom: 20px;
   padding-left: 20px;
   font-weight: bold;
 }
