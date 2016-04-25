@@ -9,34 +9,45 @@ import style from './style.css';
     frequency: 0
   }];
 
-
 export default class WordFreqArray extends Component {
 
+  constructor(props) {
+    super(props)
+    this.test = this.test.bind(this);
+  }
+
+  test(e) {
+    console.log("@test#event", e.target.innerHTML);
+    this.props.onChange(e.target.innerHTML);
+  }
+
   componentWillMount() {
-    // var allKeywords = [{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110}];
     wordArray = this.props.categoryWordCloudData;
   }
 
   componentWillUpdate() {
-    // var allKeywords = [{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110},{text: 'Hello', size: 110},{text: 'Hello', size: 40},{text: 'Hello', size: 110},{text: 'Hello', size: 150},{text: 'Hello', size: 70},{text: 'Hello', size: 180},{text: 'Hello', size: 110}];
     wordArray = this.props.categoryWordCloudData;
   }
+
+  _renderWordList(wordArray) {
+    return wordArray.map((result, i) => 
+      <tr ref="wordfreq" onClick={ this.test } key={result.text + i}>
+        <td className="word-list">
+          {result.text}
+        </td>
+        <td>
+          {result.size}
+        </td>
+      </tr>
+    )
+  }
+
   render() {
-    console.log("wordfreq array", this.props.categoryWordCloudData);
     return (
       <div className="word-frequency-array">
         <table className="table">
           <tbody>
-          {wordArray.map((result, i) =>
-            <tr key={result.text + i}>
-              <td className="word-list">
-                {result.text}
-              </td>
-              <td>
-                {result.size}
-              </td>
-            </tr>
-          )}
+            { wordArray && this._renderWordList(wordArray) }
           </tbody>
         </table>
       </div>

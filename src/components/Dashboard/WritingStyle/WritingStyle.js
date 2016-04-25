@@ -18,6 +18,7 @@ export default class WritingStyle extends Component {
     var colors = ["#969696", "#de9ed6", "#9c9ede"];
 
     var margin = {top: 10, right: 0, bottom: 0, left: 0},
+
       width = 350,
       height = 173 - margin.top - margin.bottom;
 

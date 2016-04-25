@@ -23,7 +23,7 @@ export default class AddCategory extends Component {
 
     this._toggleModal = this._toggleModal.bind(this);
     this._addCategory = this._addCategory.bind(this);
-    this._setCategoryTitle = this._setCategoryTitle.bind(this);
+    // this._setCategoryTitle = this._setCategoryTitle.bind(this);
   }
 
   _toggleModal() {
@@ -38,7 +38,7 @@ export default class AddCategory extends Component {
     });
   }
 
-  _setCategoryTitle(newTitle) {
+  _setCategoryTitle = (newTitle) => {
     return () => {
       if (this.props.onTitleChange) {
         this.props.onTitleChange(newTitle);

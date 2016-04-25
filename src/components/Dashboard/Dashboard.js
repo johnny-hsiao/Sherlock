@@ -35,17 +35,10 @@ export default class Dashboard extends Component {
 
       keywordData: undefined,
       categoryWordCloudData: undefined,
-      categoryArticleListData: undefined
-    }
-    this._updateToneGraphs = this._updateToneGraphs.bind(this);
-    this._updateLineGraph = this._updateLineGraph.bind(this);
-    this._updateCategoryCloudData = this._updateCategoryCloudData.bind(this);
-    this._updateCategoryArticleListData = this._updateCategoryArticleListData.bind(this);
+      categoryArticleListData: undefined,
 
-    this._articleToneAPICall = this._articleToneAPICall.bind(this);
-    this._categoryLineAPICall = this._categoryLineAPICall.bind(this);
-    this._categoryCloudAPICall = this._categoryCloudAPICall.bind(this);
-    this._categoryArticlesAPICall = this._categoryArticlesAPICall.bind(this);
+      currentWord: undefined
+    }
   }
   componentWillMount() {
     console.log("dashboard: will mount");
@@ -53,42 +46,12 @@ export default class Dashboard extends Component {
 
   componentWillUpdate() {
     console.log("dashboard: will update");
+
   }
 
   componentDidUpdate() {
     console.log("dashboard: did update")
-  }
-
-  _articleToneAPICall() {
-    axios.get('http://127.0.0.1:5000/articles/916')
-    .then((res) => {
-      console.log("inside dashboard", JSON.parse(res.data[0].emotionTone)[0].score);
-      this._updateToneGraphs(res.data);
-    });
-  }
-
-  _categoryLineAPICall() {
-    axios.get('http://127.0.0.1:5000/categories/3/word_line/works')
-    .then((res) => {
-      console.log("inside dashboard line", res.data.keywords);
-      this._updateLineGraph(res.data.keywords);
-    });
-  }
-
-  _categoryCloudAPICall() {
-    axios.get('http://127.0.0.1:5000/categories/3/word_cloud')
-    .then((res) => {
-      console.log("inside dashboard cloud", res.data);
-      this._updateCategoryCloudData(res.data);
-    });
-  }
-
-  _categoryArticlesAPICall() {
-    axios.get('http://127.0.0.1:5000/categories/3/articles')
-    .then((res) => {
-      // console.log("inside dashboard category articles", res.data);
-      this._updateCategoryArticleListData(res.data);
-    });
+    // this._categoryLineAPICall();
   }
 
   componentDidMount() {
@@ -99,25 +62,62 @@ export default class Dashboard extends Component {
     this._categoryArticlesAPICall();
   }
 
-  _updateLineGraph(keywordData) {
+  _articleToneAPICall = () => {
+    axios.get('http://127.0.0.1:5000/articles/916')
+    .then((res) => {
+      this._updateToneGraphs(res.data);
+    });
+  }
+
+  _categoryLineAPICall = () => {
+    if (this.state.currentWord) {
+      axios.get(`http://127.0.0.1:5000/categories/3/word_line/${this.state.currentWord}`)
+      .then((res) => {
+        this._updateLineGraph(res.data.keywords);
+      });
+    }
+  }
+
+  _categoryCloudAPICall = () => {
+    axios.get('http://127.0.0.1:5000/categories/3/word_cloud')
+    .then((res) => {
+      this._updateCategoryCloudData(res.data);
+    });
+  }
+
+  _categoryArticlesAPICall = () => {
+    axios.get('http://127.0.0.1:5000/categories/3/articles')
+    .then((res) => {
+      this._updateCategoryArticleListData(res.data);
+    });
+  }
+
+  _updateCurrentWord = (newWord) => {
+    console.log(newWord, "set in dashboard")
+    this.setState({
+      currentWord: newWord
+    })
+  }
+
+  _updateLineGraph = (keywordData) => {
     this.setState({
       keywordData: keywordData
     })
   }
 
-  _updateCategoryCloudData(keywordData) {
+  _updateCategoryCloudData = (keywordData) => {
     this.setState({
       categoryWordCloudData: keywordData
     })
   }
 
-  _updateCategoryArticleListData(articleListData) {
+  _updateCategoryArticleListData = (articleListData) => {
     this.setState({
       categoryArticleListData: articleListData
     })
   }
 
-  _updateToneGraphs(article) {
+  _updateToneGraphs = (article) => {
     let writingTone = JSON.parse(article[0].writingTone);
     let emotionTone = JSON.parse(article[0].emotionTone);
     let socialTone = JSON.parse(article[0].socialTone);
@@ -161,7 +161,7 @@ export default class Dashboard extends Component {
 
             <div className="word-frequency col-xs-12 col-md-3">
               { this.state.categoryWordCloudData &&
-                  <WordFrequency { ...this.state } />
+                  <WordFrequency { ...this.state } onChange={ this._updateCurrentWord } />
                   }
             </div>
           </div>

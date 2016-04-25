@@ -5,34 +5,30 @@ import Emotion from './Emotion'
 
 
 export default class EmotionGraphs extends Component {
-  // constructor(props) {
-  //   super(props);
+
+  // componentWillMount() {
+  //   console.log("emotions: will mount");
   // }
 
-  componentWillMount() {
-    console.log("emotions: will mount");
-  }
-
-  componentDidMount() {
-    console.log("emotions: did mount");
-  }
+  // componentDidMount() {
+  //   console.log("emotions: did mount");
+  // }
   
-  componentWillReceiveProps() {
-    console.log("emotion: will receive props");
+  // componentWillReceiveProps() {
+  //   console.log("emotion: will receive props");
     
-  }
+  // }
 
-  componentWillUpdate() {
-    console.log("emotions: will update");
-  }
+  // componentWillUpdate() {
+  //   console.log("emotions: will update");
+  // }
 
-  componentDidUpdate() {
-    console.log("emotions: did update");
-  }
-
+  // componentDidUpdate() {
+  //   console.log("emotions: did update");
+  // }
 
   render() {
-    console.log("render emotion prop", this.props.anger)
+    // console.log("render emotion prop", this.props.anger)
     return (
       <div>
         <div id="anger" className="col-xs-2" height="173">
