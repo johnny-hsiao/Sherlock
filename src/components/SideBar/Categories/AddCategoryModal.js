@@ -23,7 +23,7 @@ export default class AddCategoryModal extends Component {
 
   _save(e) {
     let newCategoryName = this.refs.categoryInput.value;
-    this.props.addCategory(newCategoryName);
+    this.props.addCategory({title: newCategoryName, id: 4 });
     this._closeModalCustom();
   }
 

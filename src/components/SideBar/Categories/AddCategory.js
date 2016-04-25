@@ -14,12 +14,14 @@ export default class AddCategory extends Component {
 
     this.state = {
       showModal: false,
-      categories: ['Technology', 'Finance', 'Sports'],
+      categories: [{title: 'Technology', id: 1 }, 
+                  {title: 'Finance', id: 2}, 
+                  {title: 'Sports', id: 3}],
       title: null,
       currentCategory: this._setCategoryTitle
     };
 
-    this.state.title = this.state.categories[0];
+    this.state.title = this.state.categories[0].title;
 
     this._toggleModal = this._toggleModal.bind(this);
     this._addCategory = this._addCategory.bind(this);
@@ -38,10 +40,11 @@ export default class AddCategory extends Component {
     });
   }
 
-  _setCategoryTitle = (newTitle) => {
+  _setCategoryTitle = (newTitle, newID) => {
     return () => {
       if (this.props.onTitleChange) {
         this.props.onTitleChange(newTitle);
+        this.props.onCategoryChange(newID);
       }
       this.setState({ title: newTitle });
     };
