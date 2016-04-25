@@ -23,7 +23,7 @@ export default class AddCategoryModal extends Component {
 
   _save(e) {
     let newCategoryName = this.refs.categoryInput.value;
-    this.props.addCategory(newCategoryName);
+    this.props.addCategory({title: newCategoryName, id: 4 });
     this._closeModalCustom();
   }
 
@@ -37,7 +37,7 @@ export default class AddCategoryModal extends Component {
       <div>
         <Modal show={ this.props.showModal }>
           <Modal.Header closeButton onHide={ this._closeModalCustom }>
-            <Modal.Title className="modal-title">{ this.state.input }</Modal.Title>
+            <Modal.Title className="modal-title">Add Category</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <input ref="categoryInput" className="modal-input" type="text" onChange={ this._updateInput }/>

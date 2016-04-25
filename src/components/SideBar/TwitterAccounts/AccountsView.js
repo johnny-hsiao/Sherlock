@@ -12,25 +12,25 @@ export default class AccountsView extends Component {
     super(props);
 
     this.state = {
-      category: 'Technology',
+      category: 'technology',
       accounts: [
-        { handle: '@ManUtd', category: 'Sports' },
-        { handle: '@theScore', category: 'Sports' },
-        { handle: '@bomani_jones', category: 'Sports' },
-        { handle: '@SportsCenter', category: 'Sports' },
-        { handle: '@MapleLeafs', category: 'Sports' },
+        { handle: '@ManUtd', category: 'sports' },
+        { handle: '@theScore', category: 'sports' },
+        { handle: '@bomani_jones', category: 'sports' },
+        { handle: '@SportsCenter', category: 'sports' },
+        { handle: '@MapleLeafs', category: 'sports' },
 
-        { handle: '@finansakrobat', category: 'Finance' },
-        { handle: '@MorganStanley', category: 'Finance' },
-        { handle: '@GoldmanSachs', category: 'Finance' },
-        { handle: '@BondVigilantes', category: 'Finance' },
-        { handle: '@ReformedBroker', category: 'Finance' },
+        { handle: '@finansakrobat', category: 'finance' },
+        { handle: '@MorganStanley', category: 'finance' },
+        { handle: '@GoldmanSachs', category: 'finance' },
+        { handle: '@BondVigilantes', category: 'finance' },
+        { handle: '@ReformedBroker', category: 'finance' },
 
-        { handle: '@tim_cook', category: 'Technology' },
-        { handle: '@TechCrunch', category: 'Technology' },
-        { handle: '@Wired', category: 'Technology' },
-        { handle: '@BBCTech', category: 'Technology' },
-        { handle: '@guardiantech', category: 'Technology' }
+        { handle: '@tim_cook', category: 'technology' },
+        { handle: '@TechCrunch', category: 'technology' },
+        { handle: '@Wired', category: 'technology' },
+        { handle: '@BBCTech', category: 'technology' },
+        { handle: '@guardiantech', category: 'technology' }
       ]
 
     };
@@ -57,12 +57,16 @@ export default class AccountsView extends Component {
   render() {
     return (
       <div>
-        <AddCategory onTitleChange={this._setCategory}/>
+        <AddCategory { ...this.props } onTitleChange={this._setCategory}/>
+
         <h5 className="accounts-heading"> Add Account </h5>
+
         <form onSubmit={this._addAccount}>
           <input id="account_input" type="text" placeholder="@" ref="accountInput"/>
         </form>
+
         <h5 className="accounts-heading">Your Accounts</h5>
+        
         <CategoryAccountList category={this.state.category} accounts={this.state.accounts} />
       </div>
     );

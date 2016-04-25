@@ -9,6 +9,20 @@ import SideBar from './components/SideBar/SideBar';
 import style from './style.css';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentCategory: undefined
+    };
+  }
+
+  _updateCurrentCategory = (newCategory) => {
+    console.log(newCategory, "changed in App")
+    this.setState({
+      currentCategory: newCategory
+    })
+  }
+
   render() {
     return (
       <div className="row">
@@ -16,7 +30,7 @@ export default class App extends Component {
         <div className="main-container col-xs-12">
           <div className="row">
             <div className="side-bar col-xs-12 col-sm-2 col-md-2 col-lg-2">
-              <SideBar />
+              <SideBar { ...this.state } onCategoryChange={ this._updateCurrentCategory } />
             </div>
             <div className="dashboard col-xs-12 col-sm-10 col-md-10 col-lg-10">
               <Dashboard />

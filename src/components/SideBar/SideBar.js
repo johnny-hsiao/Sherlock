@@ -11,7 +11,7 @@ export default class SideBar extends Component {
     return (
       <div>
         <UserProfile />
-        <AccountsView />
+        <AccountsView { ...this.props } />
       </div>
     );
   }
