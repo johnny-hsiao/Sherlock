@@ -4,24 +4,27 @@
 
 .modal-content {
   border-radius: 0px;
-  width: 350px;
+  width: 400px;
 }
 
 .modal-title {
   text-align: center;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .modal-body {
-  padding: 20px 0px;
+  padding: 20px 20px;
 }
 
 .modal-input {
   background: #E6E6E6;
+  font-size: 14px;
   border: none;
   height: 50px;
   width: 100%;
   text-align: center;
+  outline: none;
 }
 
 .btn {
