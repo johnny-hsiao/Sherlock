@@ -2,6 +2,7 @@ import d3 from 'd3';
 import ReactDOM from 'react-dom';
 import React, {Component} from 'react';
 import d3tip from 'd3-tip';
+import style from './style.css';
 
 
 export default class Emotion extends Component {
@@ -32,7 +33,7 @@ export default class Emotion extends Component {
   }
 
 
-  loadLiquidFillGauge(node, elementId, value, config) {
+  loadLiquidFillGauge(node, elementId, value, config, name) {
       var div = d3.select(node);
       div.select('svg').remove();
       if(config == null) config = liquidFillGaugeDefaultSettings();
@@ -43,6 +44,10 @@ export default class Emotion extends Component {
       var locationY = parseInt(gauge.style('height'))/2 - radius;
       var fillPercent = Math.max(config.minValue, Math.min(config.maxValue, value))/config.maxValue;
 
+      gauge.append("text")
+        .attr("text-anchor", "center")
+        .attr("dy", "10em").text(name)
+        .attr('transform','translate(110,45)');
       var waveHeightScale;
       if(config.waveHeightScaling){
           waveHeightScale = d3.scale.linear()
@@ -120,7 +125,7 @@ export default class Emotion extends Component {
       gaugeGroup.append('path')
           .attr('d', gaugeCircleArc)
           .style('fill', config.circleColor)
-          .attr('transform','translate('+radius+','+radius+')');
+          .attr('transform','translate('+radius+','+radius+')')
 
       // Text where the wave does not overlap.
       var text1 = gaugeGroup.append('text')
@@ -281,7 +286,7 @@ export default class Emotion extends Component {
     config.waveColor = this.props.color;
     config.textVertPosition = 0.5;
     config.waveAnimateTime = 3000;
-    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
+    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config, this.props.name);
   }
 
   componentDidUpdate() {
@@ -294,7 +299,7 @@ export default class Emotion extends Component {
     config.waveColor = this.props.color;
     config.textVertPosition = 0.5;
     config.waveAnimateTime = 3000;
-    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config);
+    this.loadLiquidFillGauge(this.refs.emotion ,this.props.elementId, this.props.emotionScore, config, this.props.name);
   };
 
   render() {

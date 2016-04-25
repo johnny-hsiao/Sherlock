@@ -32,19 +32,19 @@ export default class EmotionGraphs extends Component {
     return (
       <div>
         <div id="anger" className="col-xs-2" height="173">
-          <Emotion {...this.props } elementId="anger" emotionScore={ this.props.anger } color="#d62728" />
+          <Emotion {...this.props } elementId="anger" emotionScore={ this.props.anger } color="#d62728" name="Anger" />
         </div>
         <div id="disgust" className="col-xs-2" height="173">
-          <Emotion {...this.props } elementId="disgust" emotionScore={ this.props.disgust } color="#2ca02c" />
+          <Emotion {...this.props } elementId="disgust" emotionScore={ this.props.disgust } color="#2ca02c" name="Disgust"/>
         </div>
         <div id="fear" className="col-xs-2" height="173">
-          <Emotion {...this.props } elementId="fear" emotionScore={ this.props.fear } color="#9467bd" />
+          <Emotion {...this.props } elementId="fear" emotionScore={ this.props.fear } color="#9467bd" name="Fear"/>
         </div>
         <div id="joy" className="col-xs-2" height="173">
-          <Emotion {...this.props } elementId="joy" emotionScore={ this.props.joy } color="#FFB000" />
+          <Emotion {...this.props } elementId="joy" emotionScore={ this.props.joy } color="#FFB000" name="Joy"/>
         </div>
         <div id="sadness" className="col-xs-2" height="173">
-          <Emotion {...this.props } elementId="sadness" emotionScore={ this.props.sadness } color="#1f77b4" />
+          <Emotion {...this.props } elementId="sadness" emotionScore={ this.props.sadness } color="#1f77b4" name="Sadness"/>
         </div>
       </div>
     );
