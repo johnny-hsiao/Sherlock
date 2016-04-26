@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
 .bar {
   fill: steelblue;
 }
@@ -20,4 +21,8 @@
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+.word-cloud-text {
+  font-family: 'Lato', sans-serif;
 }
