@@ -43,6 +43,7 @@
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "async": "^2.0.0-rc.3",
     "axios": "^0.10.0",
     "d3": "^3.5.16",
     "d3-dispatch": "^0.4.3",
