@@ -14,6 +14,7 @@ export default class LineGraph extends Component {
         for (var key in graphData) {
             data.push({ date: graphData[key].date, close: graphData[key].frequency })
         }
+        console.log(data);
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 20, left: 85},
             width = 1118 - margin.left - margin.right,

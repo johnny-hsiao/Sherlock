@@ -20,6 +20,7 @@
   text-align: center;
   font-size: 40px;
   vertical-align: middle;
+  padding: 0px;
 }
 
 .word-frequency {
@@ -74,3 +75,15 @@
   font-weight: bold;
 }
 
+.line-graph-title {
+  text-align: left;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.line-graph-date {
+  text-align: left;
+  font-style: italic;
+  padding-left: 20px;
+  font-size: 12px;
+}

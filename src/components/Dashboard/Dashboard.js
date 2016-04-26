@@ -26,7 +26,7 @@ export default class Dashboard extends Component {
       fear: undefined,
       joy: undefined,
       sadness: undefined,
-      
+
       openness: undefined,
       conscientiousness: undefined,
       extraversion: undefined,
@@ -38,17 +38,18 @@ export default class Dashboard extends Component {
       categoryArticleListData: undefined,
 
       currentWord: undefined,
+      linegraphKeyword: undefined,
       currentArticle: undefined,
       category: undefined
 
     };
   }
   componentWillMount() {
-    console.log("dashboard: will mount");
+    console.log('dashboard: will mount');
   }
 
   componentDidMount() {
-    console.log("dashboard: did mount");
+    console.log('dashboard: did mount');
     this._articleToneAPICall();
     this._categoryLineAPICall();
     this._categoryCloudAPICall();
@@ -60,28 +61,27 @@ export default class Dashboard extends Component {
   }
 
   componentDidUpdate() {
-    // console.log("dashboard: did update", this.props.currentCategory);
+    // console.log('dashboard: did update', this.props.currentCategory);
     if (this.props.currentAccount) {
-      console.log("making api call for account")
+      console.log('making api call for account');
       this._accountLineAPICall();
       this._articleToneAPICall();
-          // console.log("@@@@dashboard: did update", this.state.account, this.props.currentAccount);
+          // console.log('@@@@dashboard: did update', this.state.account, this.props.currentAccount);
       this._accountCloudAPICall();
       this._accountArticlesAPICall();
 
-      
     }
     else {
       this._categoryLineAPICall();
       this._articleToneAPICall();
-          // console.log("@@@@dashboard: did update", this.state.category, this.props.currentCategory);
+          // console.log('@@@@dashboard: did update', this.state.category, this.props.currentCategory);
       if (this.state.category != this.props.currentCategory) {
         this._categoryCloudAPICall();
         this._categoryArticlesAPICall();
 
         this.setState({
           category: this.props.currentCategory
-        })
+        });
       }
     }
   }
@@ -91,8 +91,8 @@ export default class Dashboard extends Component {
     if (this.state.currentArticle) {
       axios.get(`http://127.0.0.1:5000/articles/${ this.state.currentArticle }`)
       .then((res) => {
-        this._updateToneGraphs(res.data)
-      })
+        this._updateToneGraphs(res.data);
+      });
     }
   }
 
@@ -107,19 +107,21 @@ export default class Dashboard extends Component {
       });
     }
   }
+
   _categoryCloudAPICall = () => {
-    console.log("cloud API call", this.props.currentCategory)
+    console.log('cloud API call', this.props.currentCategory);
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
     .then((res) => {
-      console.log("cloud api call made")
+      console.log('cloud api call made');
       this._updateCategoryCloudData(res.data);
     });
   }
+
   _categoryArticlesAPICall = () => {
-    console.log("article API call", this.props.currentCategory)
+    console.log('article API call', this.props.currentCategory);
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/articles`)
     .then((res) => {
-      console.log("article api call made")
+      console.log('article api call made');
       this._updateCategoryArticleListData(res.data);
     });
   }
@@ -136,60 +138,65 @@ export default class Dashboard extends Component {
       });
     }
   }
+
   _accountCloudAPICall = () => {
-    console.log("cloud API call", this.props.currentAccount)
+    console.log('cloud API call', this.props.currentAccount);
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_cloud`)
     .then((res) => {
-      console.log("cloud api call made")
+      console.log('cloud api call made');
       this._updateCategoryCloudData(res.data);
     });
   }
+
   _accountArticlesAPICall = () => {
-    console.log("article API call", this.props.currentAccount)
+    console.log('article API call', this.props.currentAccount);
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/articles`)
     .then((res) => {
-      console.log("article api call made")
+      console.log('article api call made');
       this.props.onAccountChange(undefined);
       this._updateCategoryArticleListData(res.data);
     });
   }
 
-
   _updateCurrentWord = (newWord) => {
-    console.log(newWord, "set in dashboard")
+    console.log(newWord, 'set in dashboard');
     this.setState({
-      currentWord: newWord
-    })
+      currentWord: newWord,
+      linegraphKeyword: newWord
+    });
   }
 
   _updateCurrentArticle = (newArticle) => {
-    console.log(newArticle, "set in dash")
+    console.log(newArticle, 'set in dash');
     this.setState({
       currentArticle: newArticle
-    })
+    });
   }
 
   _updateLineGraph = (keywordData) => {
     if (this.state.currentWord) {
       this.setState({
         currentWord: undefined,
-        keywordData: keywordData
-      })
+        keywordData: keywordData,
+        first_date: keywordData[Object.keys(keywordData)[0]].date.toString(),
+        last_date: keywordData[Object.keys(keywordData)[Object.keys(keywordData).length - 1]].date.toString()
+      });
     }
   }
 
+
   _updateCategoryCloudData = (keywordData) => {
-    console.log("update category cloud list")
+    console.log('update category cloud list');
     this.setState({
       categoryWordCloudData: keywordData
-    })
+    });
   }
 
   _updateCategoryArticleListData = (articleListData) => {
-    console.log("update category article list")
+    console.log('update category article list');
     this.setState({
       categoryArticleListData: articleListData
-    })
+    });
   }
 
   _updateToneGraphs = (article) => {
@@ -215,9 +222,10 @@ export default class Dashboard extends Component {
         extraversion: socialTone[2].score * 100,
         agreeableness: socialTone[3].score * 100,
         emotional_range: socialTone[4].score * 100
-      })
+      });
     }
-  } 
+  }
+
 
   render() {
     return (
@@ -233,9 +241,13 @@ export default class Dashboard extends Component {
 
           <div className="row" id="row2">
             <div className="line-graph col-xs-12 col-md-9">
-              { this.state.keywordData &&
-                  <LineGraph { ...this.state } />
-                  }
+              <h5 className="line-graph-title">Displaying Line Graph for: {this.state.linegraphKeyword} </h5>
+              <h5 className="line-graph-date">Date Range: {this.state.first_date} to {this.state.last_date}</h5>
+              <div>
+                { this.state.keywordData &&
+                    <LineGraph { ...this.state } />
+                    }
+              </div>
             </div>
 
             <div className="word-frequency col-xs-12 col-md-3">
