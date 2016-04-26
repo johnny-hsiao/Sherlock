@@ -2,17 +2,22 @@ body {
   font: 10px sans-serif;
 }
 
-.axis path,
+.axis path {
+  fill: #ccc;
+}
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
+.axis text {
+  font-size: 10pt;
+}
 
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 2.5px;
+  stroke: #000000;
+  stroke-width: 5.5px;
 }
 
 .x.axis {
@@ -21,4 +26,10 @@ body {
 
 .y.axis {
   font-size: 10px;
+}
+
+.circle {
+    fill: #fdae6b;
+    stroke: #fdae6b;
+    stroke-width: 1.5px;
 }

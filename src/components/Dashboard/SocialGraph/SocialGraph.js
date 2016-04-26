@@ -49,7 +49,7 @@ export default class Social extends Component {
     var svg = d3.select(node).append("svg")
           .attr("viewBox", "0 0 650 225")
       .append("g")
-        .attr("transform", "translate(50,10)");
+        .attr("transform", "translate(75,10)");
 
 
     svg.call(tip);
@@ -70,18 +70,17 @@ export default class Social extends Component {
         .attr("fill", function(d, i){
           return colors[i];
         })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
         .attr("x", function(d) { return x(d.type); })
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.value); })
+        .attr("y", 0)
+        .attr("height", 0)
+        .transition()
+        .duration(900)
+         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide);
-
-
-      function type(d) {
-        d.frequency = +d.frequency;
-        return d;
-      }
+        
   }
 
   // componentWillMount() {

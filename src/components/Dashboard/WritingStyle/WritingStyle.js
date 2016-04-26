@@ -45,7 +45,7 @@ export default class WritingStyle extends Component {
     var svg = d3.select(node).append("svg")
         .attr("viewBox", "0 0 455 225")
         .append("g")
-        .attr("transform", "translate(50,10)");
+        .attr("transform", "translate(52,10)");
 
     svg.call(tip);
 
@@ -65,13 +65,18 @@ export default class WritingStyle extends Component {
         .attr("fill", function(d, i){
           return colors[i];
         })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)        
         .attr("x", function(d) { return x(d.type); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.value); })
-        .attr("height", function(d) { return height - y(d.value); })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide);
-
+        .attr("height", 0)
+        .transition()
+        .duration(900)
+        .attr("height", function(d) { return height - y(d.value); });
+   
+        svg.selectAll(".bar").on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
 
       function type(d) {
         d.value = +d.value;
