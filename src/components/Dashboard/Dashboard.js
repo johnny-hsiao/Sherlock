@@ -196,6 +196,7 @@ export default class Dashboard extends Component {
   _updateCategoryArticleListData = (articleListData) => {
     console.log("update category article list")
     this.setState({
+      currentArticle: articleListData[0].id,
       categoryArticleListData: articleListData
     })
   }
