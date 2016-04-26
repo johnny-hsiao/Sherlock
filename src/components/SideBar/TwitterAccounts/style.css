@@ -10,6 +10,7 @@
 }
 
 .account-list-item {
+  font-size: 12px;
   border-left: none;
   border-right: none;
   outline: none;

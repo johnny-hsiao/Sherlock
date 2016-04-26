@@ -26,6 +26,7 @@ td {
 }
 
 .table>tbody>tr>td {
+  font-size: 12px;
   padding: 10px 20px;
 }
 
