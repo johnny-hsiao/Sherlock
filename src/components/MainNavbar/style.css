@@ -20,6 +20,15 @@
   line-height: 50px;
 }
 
+#brand-image {
+  border-radius: 100%;
+  height: 40px;
+  width: 40px;
+}
+#sherlock-title {
+  padding-right: 10px;
+}
+
 #navbar-brand:hover {
   text-decoration: none;
 }

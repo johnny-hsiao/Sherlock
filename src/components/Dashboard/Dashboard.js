@@ -249,8 +249,8 @@ export default class Dashboard extends Component {
 
           <div className="row" id="row2">
             <div className="line-graph col-xs-12 col-md-9">
-              <h5 className="line-graph-title">Displaying Line Graph for: {this.state.linegraphKeyword} </h5>
-              <h5 className="line-graph-date">Date Range: {this.state.first_date} to {this.state.last_date}</h5>
+              <h3 className="line-graph-title">Displaying Line Graph for: {this.state.linegraphKeyword} </h3>
+              <h3 className="line-graph-date">Date Range: {this.state.first_date} to {this.state.last_date}</h3>
               <div>
                 { this.state.keywordData &&
                     <LineGraph { ...this.state } />
