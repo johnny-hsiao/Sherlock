@@ -6,7 +6,7 @@ export default class ProfileImage extends Component {
   render() {
     return (
       <div className="profile-image">
-        <img id="profile_image" src={ '../../../assets/images/default-user.jpg' }/>
+        <img id="profile_image" src={ '../../../assets/images/guile.jpg' }/>
       </div>
     );
   };

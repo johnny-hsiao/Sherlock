@@ -86,7 +86,7 @@ export default class AccountsView extends Component {
         </form>
 
         <h5 className="accounts-heading">Your Accounts</h5>
-        
+
         <CategoryAccountList { ...this.props } category={this.state.category} accounts={this.state.accounts} />
       </div>
     );

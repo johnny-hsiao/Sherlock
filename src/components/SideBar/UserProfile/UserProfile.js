@@ -7,7 +7,7 @@ export default class UserProfile extends Component {
     return (
       <div>
         <ProfileImage />
-        <h5 className="welcome-message"><strong>Welcome,</strong> User</h5>
+        <h5 className="welcome-message"><strong>Welcome,</strong> Guile</h5>
       </div>
     );
   };
