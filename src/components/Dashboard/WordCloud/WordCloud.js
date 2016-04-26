@@ -8,9 +8,27 @@ export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
     var scaledFonts = [];
-    allKeywords.forEach(function (keyword) {
-      scaledFonts.push({ text: keyword.text, size: keyword.size/15 });
-    })
+    // var starting_size = 100;
+    // var median_size = allKeywords[allKeywords.length/2].size;
+    // console.log(median_size);
+    // if(median_size > 100){
+    //   starting_size = median_size;
+    // } else if(median_size > 50 && median_size < 75){
+    //   starting_size = median_size*1.5;
+    // } else if(median_size < 50 && allKeywords.length < 50){
+    //   starting_size = median_size * 5;
+    // } else {
+    //   starting_size = 100;
+    // }
+    if(allKeywords[allKeywords.length/2].size < 30 ){
+      allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size});
+      });
+    } else {
+     allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/15});
+      });
+    }
 
     var div = d3.select(node);
     div.select('svg').remove();
@@ -30,7 +48,7 @@ export default class WordCloud extends Component {
       d3.select(node).append('svg')
           .attr("preserveAspectRatio", "xMinYMin meet")
           .attr("viewBox", "50 0 1468.5 346")
-          .classed("svg-content-responsive", true)
+          .attr("class", "word-cloud-text svg-content-responsive", true)
         .append('g')
           .attr('transform', 'translate(734,175)')
         .selectAll('text')

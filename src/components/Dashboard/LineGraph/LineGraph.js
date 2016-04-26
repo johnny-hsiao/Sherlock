@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import style from './style.css';
 import d3tip from 'd3-tip';
 
-
 export default class LineGraph extends Component {
     generateLineGraph(node, graphData) {
         var div = d3.select(node);
@@ -12,15 +11,14 @@ export default class LineGraph extends Component {
         // var sorted = Object.keys(graphData).sort(function (a,b) { return a-b })
         var data = [];
         for (var key in graphData) {
-            data.push({ date: graphData[key].date, close: graphData[key].frequency })
+            data.push({ date: graphData[key].date, close: graphData[key].frequency });
         }
         console.log(data);
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 20, left: 85},
             width = 1118 - margin.left - margin.right,
-            height = 375 - margin.top - margin.bottom;
+            height = 285 - margin.top - margin.bottom;
 
-        
         // Parse the date / time
         var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -39,12 +37,11 @@ export default class LineGraph extends Component {
              .html(function (d) {
              return "<strong>Frequency:</strong> <span style='color:white'>  " + d.close + "</span><div><strong> Date of Article:</strong><span style='color:white'>  " + d.date.toString().slice(0, 10) + "</span></div>";
          });
-     
 
         // Adds the svg canvas
         var svg = d3.select(node).append("svg")
             .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("viewBox", "50 0 1118.5 375")
+            .attr("viewBox", "50 0 1118.5 285")
             .classed("svg-content-responsive", true)
             .append("g")
                 .attr("transform", 
@@ -80,7 +77,6 @@ export default class LineGraph extends Component {
          .on('mouseover', tip.show)
          .on('mouseout', tip.hide);
         // Add the X Axis
-     
 
     }
 
@@ -93,7 +89,7 @@ export default class LineGraph extends Component {
     }
 
     render() {
-      return <div ref="line_graph"></div>
+      return <div ref="line_graph"></div>;
     }
 
 }

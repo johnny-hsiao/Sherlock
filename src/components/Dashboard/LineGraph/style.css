@@ -16,7 +16,7 @@ body {
 
 .line {
   fill: none;
-  stroke: #000000;
+  stroke: steelblue;
   stroke-width: 5.5px;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .circle {
-    fill: #fdae6b;
-    stroke: #fdae6b;
+    fill: white;
+    stroke: steelblue;
     stroke-width: 1.5px;
 }
