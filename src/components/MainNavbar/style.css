@@ -2,7 +2,7 @@
 
 .navbar {
   padding: 15px 0;
-  background: #FFDF43;
+  background: #155289;
   border: none;
   position: fixed;
   width: 100%;
@@ -10,7 +10,7 @@
 }
 
 #navbar-brand {
-  color: #121212;
+  color: white;
   font-size: 22px;
   text-transform: uppercase;
   font-family: 'Lato', sans-serif;
@@ -26,11 +26,11 @@
 
 .navbar-toggle.collapsed {
   border: none;
-   color: #121212; 
+   color: white; 
 }
 
 .navbar-default .navbar-nav>li>a {
-  color: #121212;
+  color: white;
   text-transform: uppercase;
   font-family: 'Lato', sans-serif;
   font-weight: bold;
@@ -42,7 +42,7 @@
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background: #121212;
+  background: white;
 }
 
 .navbar-default .navbar-toggle {
