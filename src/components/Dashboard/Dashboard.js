@@ -69,7 +69,7 @@ export default class Dashboard extends Component {
       this._accountCloudAPICall();
       this._accountArticlesAPICall();
 
-      // this.props.onAccountChange(undefined);
+      
     }
     else {
       this._categoryLineAPICall();
@@ -149,6 +149,7 @@ export default class Dashboard extends Component {
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/articles`)
     .then((res) => {
       console.log("article api call made")
+      this.props.onAccountChange(undefined);
       this._updateCategoryArticleListData(res.data);
     });
   }

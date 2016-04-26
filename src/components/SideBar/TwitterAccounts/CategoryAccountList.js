@@ -25,7 +25,7 @@ export default class AccountList extends Component {
                      key={account.screen_name + "accountID" + account.id}
                  onClick={ this._test }
 
-                     >{account.screen_name}</button>
+                     >@{account.screen_name}</button>
           : null
       )}
       </div>

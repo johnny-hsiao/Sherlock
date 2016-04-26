@@ -17,7 +17,6 @@ export default class WordFreqArray extends Component {
   }
 
   test(e) {
-    console.log("@test#event", e.target.innerHTML);
     this.props.onChange(e.target.innerHTML);
   }
 
