@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CategoryAccountList from './CategoryAccountList';
 import AddCategory from '../Categories/AddCategory';
+import axios from 'axios';
 
 import { Button } from 'react-bootstrap';
 import { Input } from 'react-bootstrap';
@@ -13,41 +14,61 @@ export default class AccountsView extends Component {
 
     this.state = {
       category: 'technology',
+      id: '1',
       accounts: [
-        { handle: '@ManUtd', category: 'sports' },
-        { handle: '@theScore', category: 'sports' },
-        { handle: '@bomani_jones', category: 'sports' },
-        { handle: '@SportsCenter', category: 'sports' },
-        { handle: '@MapleLeafs', category: 'sports' },
-
-        { handle: '@finansakrobat', category: 'finance' },
-        { handle: '@MorganStanley', category: 'finance' },
-        { handle: '@GoldmanSachs', category: 'finance' },
-        { handle: '@BondVigilantes', category: 'finance' },
-        { handle: '@ReformedBroker', category: 'finance' },
-
-        { handle: '@tim_cook', category: 'technology' },
-        { handle: '@TechCrunch', category: 'technology' },
-        { handle: '@Wired', category: 'technology' },
-        { handle: '@BBCTech', category: 'technology' },
-        { handle: '@guardiantech', category: 'technology' }
-      ]
-
+        { screen_name: '@ManUtd', category: 'sports' },
+      ],
+      categoryID: undefined
     };
+  }
 
+  componentDidMount() {
+    this._accountAPICall(this.props.currentCategory);
+  }
+
+  componentDidUpdate() {
+    if (this.state.id != this.props.currentCategory) {
+      this.setState({
+        categoryID: this.props.currentCategory
+      });
+    }
+
+    if (this.state.categoryID) {
+      this._accountAPICall(this.props.currentCategory);
+      this.setState({
+        categoryID: undefined,
+        id: this.props.currentCategory
+      });
+    }    
+  }
+
+  _accountAPICall = (categoryID) => {
+    axios.get(`http://127.0.0.1:5000/categories/${ categoryID }/accounts`)
+    .then((res) => {
+      this._updateAccountList(res.data)
+    })
+  } 
+
+  _updateAccountList = (newAccounts) => {
+    console.log(newAccounts)
+    this.setState({
+      accounts: newAccounts
+    })
   }
 
   _addAccount = (e) => {
     e.preventDefault();
     this.setState({
-      accounts: this.state.accounts.concat({ handle: '@' + this.refs.accountInput.value, category: this.state.category })
+      accounts: this.state.accounts.concat({ screen_name: '@' + this.refs.accountInput.value, category: this.state.category })
     });
     this._emptyInput();
 
   };
 
-  _setCategory = (title) => {
-    this.setState({ category: title });
+  _setCategory = (title, newID) => {
+    this.setState({ 
+      category: title,
+    });
   };
 
   _emptyInput = (e) => {
@@ -67,7 +88,7 @@ export default class AccountsView extends Component {
 
         <h5 className="accounts-heading">Your Accounts</h5>
         
-        <CategoryAccountList category={this.state.category} accounts={this.state.accounts} />
+        <CategoryAccountList { ...this.props } category={this.state.category} accounts={this.state.accounts} />
       </div>
     );
   }

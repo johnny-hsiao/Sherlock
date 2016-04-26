@@ -5,7 +5,6 @@ import MenuItem from 'react-bootstrap/lib/MenuItem';
 
 export default class DropdownCategories extends Component {
   _renderMenuItems(menu_items) {
-    console.log(menu_items)
     return menu_items.map((item, index) => {
       return <MenuItem eventKey={index} key={item.title} onClick={this.props.onChange(item.title, item.id)}>{item.title}</MenuItem>;
     });

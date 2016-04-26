@@ -60,20 +60,29 @@ export default class Dashboard extends Component {
   }
 
   componentDidUpdate() {
-    console.log("dashboard: did update", this.props.currentCategory);
-    this._categoryLineAPICall();
-    this._articleToneAPICall();
-        console.log("@@@@dashboard: did update", this.state.category, this.props.currentCategory);
-    if (this.state.category != this.props.currentCategory) {
-      this._categoryCloudAPICall();
-      this._categoryArticlesAPICall();
+    // console.log("dashboard: did update", this.props.currentCategory);
+    if (this.props.currentAccount) {
+      console.log("making api call for account")
+      this._accountLineAPICall();
+      this._articleToneAPICall();
+          // console.log("@@@@dashboard: did update", this.state.account, this.props.currentAccount);
+      this._accountCloudAPICall();
+      this._accountArticlesAPICall();
 
-      // this._articleToneAPICall();
-      // this._categoryLineAPICall();
+      // this.props.onAccountChange(undefined);
+    }
+    else {
+      this._categoryLineAPICall();
+      this._articleToneAPICall();
+          // console.log("@@@@dashboard: did update", this.state.category, this.props.currentCategory);
+      if (this.state.category != this.props.currentCategory) {
+        this._categoryCloudAPICall();
+        this._categoryArticlesAPICall();
 
-      this.setState({
-        category: this.props.currentCategory
-      })
+        this.setState({
+          category: this.props.currentCategory
+        })
+      }
     }
   }
 
@@ -87,6 +96,9 @@ export default class Dashboard extends Component {
     }
   }
 
+  //
+  // Category API calls
+  //
   _categoryLineAPICall = () => {
     if (this.state.currentWord) {
       axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_line/${this.state.currentWord}`)
@@ -95,7 +107,6 @@ export default class Dashboard extends Component {
       });
     }
   }
-
   _categoryCloudAPICall = () => {
     console.log("cloud API call", this.props.currentCategory)
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
@@ -104,7 +115,6 @@ export default class Dashboard extends Component {
       this._updateCategoryCloudData(res.data);
     });
   }
-
   _categoryArticlesAPICall = () => {
     console.log("article API call", this.props.currentCategory)
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/articles`)
@@ -113,6 +123,36 @@ export default class Dashboard extends Component {
       this._updateCategoryArticleListData(res.data);
     });
   }
+
+
+  //
+  // Account API calls
+  //
+  _accountLineAPICall = () => {
+    if (this.state.currentWord) {
+      axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_line/${this.state.currentWord}`)
+      .then((res) => {
+        this._updateLineGraph(res.data.keywords);
+      });
+    }
+  }
+  _accountCloudAPICall = () => {
+    console.log("cloud API call", this.props.currentAccount)
+    axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_cloud`)
+    .then((res) => {
+      console.log("cloud api call made")
+      this._updateCategoryCloudData(res.data);
+    });
+  }
+  _accountArticlesAPICall = () => {
+    console.log("article API call", this.props.currentAccount)
+    axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/articles`)
+    .then((res) => {
+      console.log("article api call made")
+      this._updateCategoryArticleListData(res.data);
+    });
+  }
+
 
   _updateCurrentWord = (newWord) => {
     console.log(newWord, "set in dashboard")
