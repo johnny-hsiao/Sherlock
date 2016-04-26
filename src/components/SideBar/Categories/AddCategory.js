@@ -14,9 +14,10 @@ export default class AddCategory extends Component {
 
     this.state = {
       showModal: false,
-      categories: [{title: 'Technology', id: 1 }, 
-                  {title: 'Finance', id: 2}, 
-                  {title: 'Sports', id: 3}],
+      categories: [{title: 'technology', id: "1" }, 
+                  {title: 'finance', id: "2"}, 
+                  {title: 'sports', id: "3"},
+                  {title: 'education', id: "4"}],
       title: null,
       currentCategory: this._setCategoryTitle
     };

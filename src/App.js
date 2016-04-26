@@ -12,7 +12,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentCategory: undefined
+      currentCategory: "1"
     };
   }
 
@@ -33,7 +33,7 @@ export default class App extends Component {
               <SideBar { ...this.state } onCategoryChange={ this._updateCurrentCategory } />
             </div>
             <div className="dashboard col-xs-12 col-sm-10 col-md-10 col-lg-10">
-              <Dashboard />
+              <Dashboard { ...this.state } />
             </div>
           </div>
         </div>
