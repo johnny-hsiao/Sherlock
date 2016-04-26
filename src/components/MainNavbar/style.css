@@ -41,6 +41,14 @@
   border-radius: 0px;
 }
 
+ul.nav.navbar-nav.navbar-right {
+  font-size: 14px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #AEC7E8;
+}
+
 .navbar-default .navbar-toggle .icon-bar {
   background: white;
 }
