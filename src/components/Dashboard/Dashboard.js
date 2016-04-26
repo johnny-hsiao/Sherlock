@@ -249,6 +249,7 @@ export default class Dashboard extends Component {
 
           <div className="row" id="row2">
             <div className="line-graph col-xs-12 col-md-9">
+
               <h5 className="line-graph-title"><strong>Displaying Line Graph for:</strong> {this.state.linegraphKeyword} </h5>
               <div>
                 { this.state.keywordData &&
