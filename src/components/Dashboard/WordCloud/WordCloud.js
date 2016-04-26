@@ -8,25 +8,34 @@ export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
     var scaledFonts = [];
-    // var starting_size = 100;
-    // var median_size = allKeywords[allKeywords.length/2].size;
-    // console.log(median_size);
-    // if(median_size > 100){
-    //   starting_size = median_size;
-    // } else if(median_size > 50 && median_size < 75){
-    //   starting_size = median_size*1.5;
-    // } else if(median_size < 50 && allKeywords.length < 50){
-    //   starting_size = median_size * 5;
-    // } else {
-    //   starting_size = 100;
-    // }
+
     if(allKeywords[allKeywords.length/2].size < 30 ){
       allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size * 1.3});
+      });
+    } else if (allKeywords[allKeywords.length/2].size < 40 ) {
+     allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size * 1.1});
+      });
+    } else if (allKeywords[allKeywords.length/2].size < 50 ) {
+     allKeywords.forEach(function (keyword) {
         scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size});
+      });
+    }else if (allKeywords[allKeywords.length/2].size < 100 ) {
+     allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/2});
+      });
+    } else if (allKeywords[allKeywords.length/2].size < 150 ) {
+     allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/7});
+      });
+    } else if (allKeywords[0].size > 1000 && allKeywords[3].size > 1000) {
+     allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/18});
       });
     } else {
      allKeywords.forEach(function (keyword) {
-        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/15});
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/10});
       });
     }
 
