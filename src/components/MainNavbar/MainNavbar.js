@@ -21,7 +21,7 @@ export default class MainNavbar extends Component {
                 <span className="icon-bar"></span>
               </button>
               <a id="navbar-brand" href="#">
-        <span id="sherlock-title">SHERLOCK</span><img alt="Brand" src="../assets/images/sherlock.png" id="brand-image"></img></a>
+        <span id="sherlock-title">Sherlock</span><img alt="Brand" src="../assets/images/sherlock.png" id="brand-image"></img></a>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

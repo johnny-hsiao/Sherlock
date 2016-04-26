@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Tangerine);
 
 .navbar {
   padding: 15px 0;
@@ -11,10 +12,8 @@
 
 #navbar-brand {
   color: white;
-  font-size: 22px;
-  text-transform: uppercase;
-  font-family: 'Lato', sans-serif;
-  font-weight: bold;
+  font-size: 40px;
+  font-family: 'Tangerine', cursive;
   vertical-align: middle;
   display: inline;
   line-height: 50px;
