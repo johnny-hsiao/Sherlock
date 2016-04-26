@@ -67,7 +67,6 @@ export default class Dashboard extends Component {
       console.log('making api call for account');
       this._accountLineAPICall();
       this._articleToneAPICall();
-          // console.log('@@@@dashboard: did update', this.state.account, this.props.currentAccount);
       this._accountCloudAPICall();
       this._accountArticlesAPICall();
 
@@ -75,7 +74,6 @@ export default class Dashboard extends Component {
     else {
       this._categoryLineAPICall();
       this._articleToneAPICall();
-          // console.log('@@@@dashboard: did update', this.state.category, this.props.currentCategory);
       if (this.state.category != this.props.currentCategory) {
         this._categoryCloudAPICall();
         this._categoryArticlesAPICall();
@@ -197,12 +195,13 @@ export default class Dashboard extends Component {
     console.log('update word freq list');
     this.setState({
       currentWord: keywordData[0].text,
+      linegraphKeyword: keywordData[0].text,
       wordFreqList: keywordData
     });
   }
 
   _updateCategoryArticleListData = (articleListData) => {
-    console.log('update category article list');
+    console.log('update category article list', articleListData[0].text);
     this.setState({
       currentArticle: articleListData[0].id,
       categoryArticleListData: articleListData

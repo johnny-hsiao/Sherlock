@@ -50,7 +50,6 @@ export default class AccountsView extends Component {
   } 
 
   _updateAccountList = (newAccounts) => {
-    console.log(newAccounts)
     this.setState({
       accounts: newAccounts
     })
