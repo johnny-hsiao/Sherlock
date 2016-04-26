@@ -13,24 +13,24 @@ export default class WordFreqArray extends Component {
 
   constructor(props) {
     super(props)
-    this.test = this.test.bind(this);
+    this._updateCurrentWord = this._updateCurrentWord.bind(this);
   }
 
-  test(e) {
+  _updateCurrentWord(e) {
     this.props.onChange(e.target.innerHTML);
   }
 
   componentWillMount() {
-    wordArray = this.props.categoryWordCloudData;
+    wordArray = this.props.wordFreqList;
   }
 
   componentWillUpdate() {
-    wordArray = this.props.categoryWordCloudData;
+    wordArray = this.props.wordFreqList;
   }
 
   _renderWordList(wordArray) {
     return wordArray.map((result, i) => 
-      <tr ref="wordfreq" onClick={ this.test } key={result.text + i}>
+      <tr ref="wordfreq" onClick={ this._updateCurrentWord } key={result.text + i}>
         <td className="word-list">
           {result.text}
         </td>

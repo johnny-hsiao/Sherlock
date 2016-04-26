@@ -36,6 +36,7 @@ export default class Dashboard extends Component {
       keywordData: undefined,
       categoryWordCloudData: undefined,
       categoryArticleListData: undefined,
+      wordFreqList: undefined,
 
       currentWord: undefined,
       currentArticle: undefined,
@@ -68,8 +69,6 @@ export default class Dashboard extends Component {
           // console.log("@@@@dashboard: did update", this.state.account, this.props.currentAccount);
       this._accountCloudAPICall();
       this._accountArticlesAPICall();
-
-      
     }
     else {
       this._categoryLineAPICall();
@@ -112,6 +111,7 @@ export default class Dashboard extends Component {
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
     .then((res) => {
       console.log("cloud api call made")
+      this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
@@ -123,7 +123,6 @@ export default class Dashboard extends Component {
       this._updateCategoryArticleListData(res.data);
     });
   }
-
 
   //
   // Account API calls
@@ -141,6 +140,7 @@ export default class Dashboard extends Component {
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_cloud`)
     .then((res) => {
       console.log("cloud api call made")
+      this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
@@ -182,6 +182,13 @@ export default class Dashboard extends Component {
     console.log("update category cloud list")
     this.setState({
       categoryWordCloudData: keywordData
+    })
+  }
+
+  _updateWordFreqList = (keywordData) => {
+    console.log("update word freq list")
+    this.setState({
+      wordFreqList: keywordData
     })
   }
 
