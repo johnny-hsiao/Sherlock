@@ -188,6 +188,7 @@ export default class Dashboard extends Component {
   _updateWordFreqList = (keywordData) => {
     console.log("update word freq list")
     this.setState({
+      currentWord: keywordData[0].text,
       wordFreqList: keywordData
     })
   }
