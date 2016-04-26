@@ -5,10 +5,10 @@ import style from './style.css';
 export default class AccountList extends Component {
   constructor(props) {
     super(props);
-    this._test = this._test.bind(this);
+    this._updateCurrentAccount = this._updateCurrentAccount.bind(this);
   }
 
-  _test(e) {
+  _updateCurrentAccount(e) {
     let reactid = e.target.getAttribute('data-reactid');
     console.log(reactid.match(/accountID(\d*)/));
     let accountID = reactid.match(/accountID(\d*)/)[1];
@@ -23,7 +23,7 @@ export default class AccountList extends Component {
           ? <button type="button" 
                className="list-group-item account-list-item" 
                      key={account.screen_name + "accountID" + account.id}
-                 onClick={ this._test }
+                 onClick={ this._updateCurrentAccount }
 
                      >@{account.screen_name}</button>
           : null

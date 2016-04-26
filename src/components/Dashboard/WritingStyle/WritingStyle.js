@@ -74,7 +74,7 @@ export default class WritingStyle extends Component {
         .transition()
         .duration(900)
         .attr("height", function(d) { return height - y(d.value); });
-   
+
         svg.selectAll(".bar").on('mouseover', tip.show)
         .on('mouseout', tip.hide)
 
@@ -83,8 +83,6 @@ export default class WritingStyle extends Component {
         return d;
       }
   }
-  
-
 
   componentWillMount() {
     console.log("writingstyle: will mount")

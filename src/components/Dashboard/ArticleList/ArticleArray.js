@@ -12,7 +12,7 @@ export default class ArticleArray extends Component {
 
   constructor(props) {
     super(props)
-    this.test = this.test.bind(this);
+    this.updateCurrentArticle = this.updateCurrentArticle.bind(this);
   }
 
   componentWillMount() {
@@ -23,7 +23,7 @@ export default class ArticleArray extends Component {
     articleArray = this.props.categoryArticleListData;
   }
 
-  test(e) {
+  updateCurrentArticle(e) {
     let reactid = e.target.getAttribute('data-reactid');
     let articleID = reactid.match(/articleID(\d*)/)[1];
 
@@ -32,7 +32,7 @@ export default class ArticleArray extends Component {
 
   _renderArticleList(articleArray) {
     return articleArray.map((result, i) =>
-      <tr key={result.title + "articleID" + result.id} onClick={ this.test } >
+      <tr key={result.title + "articleID" + result.id} onClick={ this.updateCurrentArticle } >
         <td className="word-list">
           {result.title}
           <br/>

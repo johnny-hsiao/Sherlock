@@ -36,6 +36,7 @@ export default class Dashboard extends Component {
       keywordData: undefined,
       categoryWordCloudData: undefined,
       categoryArticleListData: undefined,
+      wordFreqList: undefined,
 
       currentWord: undefined,
       linegraphKeyword: undefined,
@@ -113,6 +114,7 @@ export default class Dashboard extends Component {
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
     .then((res) => {
       console.log('cloud api call made');
+      this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
@@ -125,7 +127,6 @@ export default class Dashboard extends Component {
       this._updateCategoryArticleListData(res.data);
     });
   }
-
 
   //
   // Account API calls
@@ -144,6 +145,7 @@ export default class Dashboard extends Component {
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_cloud`)
     .then((res) => {
       console.log('cloud api call made');
+      this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
@@ -184,7 +186,6 @@ export default class Dashboard extends Component {
     }
   }
 
-
   _updateCategoryCloudData = (keywordData) => {
     console.log('update category cloud list');
     this.setState({
@@ -192,9 +193,18 @@ export default class Dashboard extends Component {
     });
   }
 
+  _updateWordFreqList = (keywordData) => {
+    console.log('update word freq list');
+    this.setState({
+      currentWord: keywordData[0].text,
+      wordFreqList: keywordData
+    });
+  }
+
   _updateCategoryArticleListData = (articleListData) => {
     console.log('update category article list');
     this.setState({
+      currentArticle: articleListData[0].id,
       categoryArticleListData: articleListData
     });
   }
@@ -225,7 +235,6 @@ export default class Dashboard extends Component {
       });
     }
   }
-
 
   render() {
     return (
