@@ -17,7 +17,7 @@ export default class LineGraph extends Component {
         // Set the dimensions of the canvas / graph
         var margin = {top: 30, right: 20, bottom: 20, left: 85},
             width = 1118 - margin.left - margin.right,
-            height = 285 - margin.top - margin.bottom;
+            height = 260 - margin.top - margin.bottom;
 
         // Parse the date / time
         var parseDate = d3.time.format("%d-%b-%y").parse;
@@ -41,7 +41,7 @@ export default class LineGraph extends Component {
         // Adds the svg canvas
         var svg = d3.select(node).append("svg")
             .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("viewBox", "50 0 1118.5 285")
+            .attr("viewBox", "50 0 1118.5 260")
             .classed("svg-content-responsive", true)
             .append("g")
                 .attr("transform", 
