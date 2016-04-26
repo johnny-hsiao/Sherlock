@@ -77,13 +77,18 @@
 
 .line-graph-title {
   text-align: left;
-  font-weight: bold;
   padding-left: 20px;
 }
 
-.line-graph-date {
+.line-graph-first-date {
   text-align: left;
-  font-style: italic;
   padding-left: 20px;
-  font-size: 14px;
+  font-size: 15px;
+}
+
+.line-graph-last-date {
+  text-align: left;
+  padding-right: 40px;
+  font-size: 15px;
+  text-align: right;
 }
