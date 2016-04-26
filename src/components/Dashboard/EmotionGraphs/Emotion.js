@@ -38,7 +38,7 @@ export default class Emotion extends Component {
       div.select('svg').remove();
       if(config == null) config = liquidFillGaugeDefaultSettings();
 
-      var gauge = d3.select(node).append('svg');
+      var gauge = d3.select(node).append('svg').attr('class', 'emotion-graph-text');
       var radius = Math.min(parseInt(gauge.style('width')), parseInt(gauge.style('height')))/2.75 ;
       var locationX = parseInt(gauge.style('width'))/2 - radius;
       var locationY = parseInt(gauge.style('height'))/2 - radius;
@@ -46,8 +46,8 @@ export default class Emotion extends Component {
 
       gauge.append("text")
         .attr("text-anchor", "center")
-        .attr("dy", "10em").text(name)
-        .attr('transform','translate(110,45)');
+        .attr("dy", "9.75em").text(name)
+        .attr('transform','translate(100,0)');
       var waveHeightScale;
       if(config.waveHeightScaling){
           waveHeightScale = d3.scale.linear()

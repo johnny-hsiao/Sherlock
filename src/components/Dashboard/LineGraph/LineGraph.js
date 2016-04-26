@@ -35,7 +35,7 @@ export default class LineGraph extends Component {
              .attr('class', 'd3-tip')
              .offset([-10, 0])
              .html(function (d) {
-             return "<strong>Frequency:</strong> <span style='color:white'>  " + d.close + "</span><div><strong> Date of Article:</strong><span style='color:white'>  " + d.date.toString().slice(0, 10) + "</span></div>";
+             return "<strong>Frequency:</strong> <span style='color:white'>  " + d.close + "</span><div><strong>Article Date:</strong><span style='color:white'>  " + d.date.toString().slice(0, 10) + "</span></div>";
          });
 
         // Adds the svg canvas
