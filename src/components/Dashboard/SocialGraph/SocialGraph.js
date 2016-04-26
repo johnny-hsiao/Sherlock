@@ -74,10 +74,11 @@ export default class Social extends Component {
         .on('mouseout', tip.hide)
         .attr("x", function(d) { return x(d.type); })
         .attr("width", x.rangeBand())
-        .attr("y", function(d) { return y(d.value); })
+        .attr("y", 0)
         .attr("height", 0)
         .transition()
         .duration(900)
+         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); })
         
   }
