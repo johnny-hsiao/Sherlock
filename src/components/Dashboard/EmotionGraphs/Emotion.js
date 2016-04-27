@@ -39,7 +39,7 @@ export default class Emotion extends Component {
       if(config == null) config = liquidFillGaugeDefaultSettings();
 
       var gauge = d3.select(node).append('svg').attr('class', 'emotion-graph-text');
-      var radius = Math.min(parseInt(gauge.style('width')), parseInt(gauge.style('height')))/2.75 ;
+      var radius = Math.min(parseInt(gauge.style('width')), parseInt(gauge.style('height')))/2.95 ;
       var locationX = parseInt(gauge.style('width'))/2 - radius;
       var locationY = parseInt(gauge.style('height'))/2 - radius;
       var fillPercent = Math.max(config.minValue, Math.min(config.maxValue, value))/config.maxValue;
@@ -47,7 +47,7 @@ export default class Emotion extends Component {
       gauge.append("text")
         .attr("text-anchor", "center")
         .attr("dy", "9.75em").text(name)
-        .attr('transform','translate(100,0)');
+        .attr('transform','translate(102,12)');
       var waveHeightScale;
       if(config.waveHeightScaling){
           waveHeightScale = d3.scale.linear()
