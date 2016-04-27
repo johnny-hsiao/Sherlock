@@ -2,6 +2,11 @@
   border: none;
 }
 
+#category-modal {
+top: 30%;
+right: -10%;
+outline: none;
+}
 .modal-content {
   border-radius: 0px;
   width: 400px;

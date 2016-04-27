@@ -35,7 +35,7 @@ export default class AddCategoryModal extends Component {
   render() {
     return (
       <div>
-        <Modal show={ this.props.showModal }>
+        <Modal id="category-modal" show={ this.props.showModal }>
           <Modal.Header closeButton onHide={ this._closeModalCustom }>
             <Modal.Title className="modal-title">Add Category</Modal.Title>
           </Modal.Header>
@@ -44,7 +44,7 @@ export default class AddCategoryModal extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={ this._closeModalCustom }>Close</Button>
-            <Button bsStyle="success" onClick={ this._save } >Save</Button>
+            <Button bsStyle="default" onClick={ this._save } >Save</Button>
           </Modal.Footer>
         </Modal>
       </div>
