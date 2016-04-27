@@ -213,7 +213,7 @@ export default class Dashboard extends Component {
 
   _updateCategoryArticleListData = (articleListData) => {
     let articleID = undefined;
-    if (articleListData) {
+    if (articleListData[0]) {
       articleID = articleListData[0].id;
     }
     // console.log('update category article list', articleListData[0].text);
