@@ -19,11 +19,11 @@ export default class WordCloud extends Component {
       });
     } else if (allKeywords[allKeywords.length/2].size < 40 ) {
      allKeywords.forEach(function (keyword) {
-        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size * 1.1});
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size});
       });
     } else if (allKeywords[allKeywords.length/2].size < 50 ) {
      allKeywords.forEach(function (keyword) {
-        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size});
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size/1.5});
       });
     }else if (allKeywords[allKeywords.length/2].size < 100 ) {
      allKeywords.forEach(function (keyword) {
