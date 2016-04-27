@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import DropdownCategories from '../DropdownCategories/DropdownCategories';
 import AddCategoryModal from './AddCategoryModal';
 import AccountsView from '../TwitterAccounts/AccountsView';
+import axios from 'axios';
 import styles from  './style.css';
 
 import { Button } from 'react-bootstrap';
@@ -35,10 +36,17 @@ export default class AddCategory extends Component {
   }
 
   _addCategory(newCategory) {
-    this.setState({
-      categories: [...this.state.categories, newCategory]
-    });
+    let self = this;
+    axios.post(`http://127.0.0.1:5000/categories/new`, { name: newCategory })
+    .then(function (res) {
+      console.log(res, "added category!");
+      self.setState({
+        categories: [...self.state.categories, {title: res.data.newCategory.name, id: res.data.newCategory.id }]
+      });
+    })
+    
   }
+
 
   _setCategoryTitle = (newTitle, newID) => {
     return () => {

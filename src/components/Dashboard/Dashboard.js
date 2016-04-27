@@ -200,7 +200,7 @@ export default class Dashboard extends Component {
 
   _updateWordFreqList = (keywordData) => {
     let word = undefined;
-    if (keywordData) {
+    if (keywordData[0]) {
       word = keywordData[0].text;
     }
     console.log('update word freq list');
