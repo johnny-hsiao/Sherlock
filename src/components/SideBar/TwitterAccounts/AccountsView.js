@@ -58,19 +58,15 @@ export default class AccountsView extends Component {
   _addAccount = (e) => {
     e.preventDefault();
     console.log("addaccount", this.refs.accountInput.value)
-    // this.setState({
-    //   accounts: this.state.accounts.concat({ screen_name: '@' + this.refs.accountInput.value, category: this.state.category })
-    // });
+    this.setState({
+      accounts: this.state.accounts.concat({ screen_name: this.refs.accountInput.value, category: this.state.category })
+    });
 
     axios.post(`http://127.0.0.1:5000/categories/${ this.props.currentCategory }/accounts/new`, { screen_name: this.refs.accountInput.value })
-    .then((res) => {
-      console.log("data back after creating new account", res.data)
-      // this.setState({
-
-      // })
+    .then(function (res) {
+      console.log(res, "added account!");
     })
     this._emptyInput();
-
   };
 
   _setCategory = (title, newID) => {
