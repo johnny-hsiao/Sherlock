@@ -63,11 +63,6 @@ export default class Dashboard extends Component {
 
   componentDidUpdate() {
     // console.log('dashboard: did update', this.props.currentCategory);
-    // if ((this.state.category != this.props.currentCategory) || (this.props.currentAccount)) {
-      
-    // }
-
-
     if (this.props.currentAccount) {
       console.log('making api call for account');
       this._accountLineAPICall();
