@@ -21,8 +21,8 @@ export default class MainNavbar extends Component {
                 <span className="icon-bar"></span>
               </button>
               <a id="navbar-brand" href="#">
-                <span id="sherlock-title">SHERLOCK</span>
                 <img alt="Brand" src="../assets/images/sherlock.png" id="brand-image"></img>
+                <span id="sherlock-title">Sherlock</span>
               </a>
             </div>
 
