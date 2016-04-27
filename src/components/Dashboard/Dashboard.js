@@ -271,6 +271,7 @@ export default class Dashboard extends Component {
                     <LineGraph { ...this.state } />
                     }
               </div>
+              
               <div className="line-graph-first-date col-xs-6">
                 <strong>From:</strong> {this.state.first_date}
               </div>
