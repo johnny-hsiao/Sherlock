@@ -84,26 +84,26 @@ export default class WritingStyle extends Component {
       }
   }
 
-  componentWillMount() {
-    console.log("writingstyle: will mount")
-  }
+  // componentWillMount() {
+  //   console.log("writingstyle: will mount")
+  // }
   componentDidMount() {
-    console.log("writingstyle: did mount")
+    // console.log("writingstyle: did mount")
     this.writingGraph(this.refs.barGraph, this.props);
   }
-  componentWillUpdate() {
-    console.log("writingstyle: will update")
-  }
+  // componentWillUpdate() {
+  //   console.log("writingstyle: will update")
+  // }
   componentDidUpdate() {
-    console.log("writingstyle: did update")
+    // console.log("writingstyle: did update")
     this.writingGraph(this.refs.barGraph, this.props);
   }
-  componentWillUnmount() {
-    console.log("writingstyle: will unmount")
-  }
+  // componentWillUnmount() {
+  //   console.log("writingstyle: will unmount")
+  // }
 
   render() {
-    console.log("render writingstyle", this.props.analytical)
+    // console.log("render writingstyle", this.props.analytical)
     return <div ref="barGraph"></div>;
   };
 };

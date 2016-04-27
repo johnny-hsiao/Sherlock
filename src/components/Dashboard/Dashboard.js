@@ -45,26 +45,26 @@ export default class Dashboard extends Component {
 
     };
   }
-  componentWillMount() {
-    console.log('dashboard: will mount');
-  }
+  // componentWillMount() {
+  //   console.log('dashboard: will mount');
+  // }
 
   componentDidMount() {
-    console.log('dashboard: did mount');
+    // console.log('dashboard: did mount');
     this._articleToneAPICall();
     this._categoryLineAPICall();
     this._categoryCloudAPICall();
     this._categoryArticlesAPICall();
   }
 
-  componentWillUpdate() {
+  // componentWillUpdate() {
 
-  }
+  // }
 
   componentDidUpdate() {
     // console.log('dashboard: did update', this.props.currentCategory);
     if (this.props.currentAccount) {
-      console.log('making api call for account');
+      // console.log('making api call for account');
       this._accountLineAPICall();
       this._articleToneAPICall();
       this._accountCloudAPICall();
@@ -109,20 +109,20 @@ export default class Dashboard extends Component {
 
   _categoryCloudAPICall = () => {
     this._clearCloudData();
-    console.log('cloud API call', this.props.currentCategory);
+    // console.log('cloud API call', this.props.currentCategory);
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
     .then((res) => {
-      console.log('cloud api call made');
+      // console.log('cloud api call made');
       this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
 
   _categoryArticlesAPICall = () => {
-    console.log('article API call', this.props.currentCategory);
+    // console.log('article API call', this.props.currentCategory);
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/articles`)
     .then((res) => {
-      console.log('article api call made');
+      // console.log('article api call made');
       this._updateCategoryArticleListData(res.data);
     });
   }
@@ -140,20 +140,20 @@ export default class Dashboard extends Component {
   }
 
   _accountCloudAPICall = () => {
-    console.log('cloud API call', this.props.currentAccount);
+    // console.log('cloud API call', this.props.currentAccount);
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/word_cloud`)
     .then((res) => {
-      console.log('cloud api call made');
+      // console.log('cloud api call made');
       this._updateWordFreqList(res.data);
       this._updateCategoryCloudData(res.data);
     });
   }
 
   _accountArticlesAPICall = () => {
-    console.log('article API call', this.props.currentAccount);
+    // console.log('article API call', this.props.currentAccount);
     axios.get(`http://127.0.0.1:5000/accounts/${this.props.currentAccount}/articles`)
     .then((res) => {
-      console.log('article api call made');
+      // console.log('article api call made');
       this.props.onAccountChange(undefined);
       this._updateCategoryArticleListData(res.data);
     });
@@ -166,7 +166,7 @@ export default class Dashboard extends Component {
   }
 
   _updateCurrentWord = (newWord) => {
-    console.log(newWord, 'set in dashboard');
+    // console.log(newWord, 'set in dashboard');
     this.setState({
       currentWord: newWord,
       linegraphKeyword: newWord
@@ -174,7 +174,7 @@ export default class Dashboard extends Component {
   }
 
   _updateCurrentArticle = (newArticle) => {
-    console.log(newArticle, 'set in dash');
+    // console.log(newArticle, 'set in dash');
     this.setState({
       currentArticle: newArticle
     });
@@ -192,7 +192,7 @@ export default class Dashboard extends Component {
   }
 
   _updateCategoryCloudData = (keywordData) => {
-    console.log('update category cloud list');
+    // console.log('update category cloud list');
     this.setState({
       categoryWordCloudData: keywordData
     });
@@ -204,7 +204,7 @@ export default class Dashboard extends Component {
     if (keywordData[0]) {
       word = keywordData[0].text;
     }
-    console.log('update word freq list');
+    // console.log('update word freq list');
     this.setState({
       currentWord: word,
       linegraphKeyword: word,

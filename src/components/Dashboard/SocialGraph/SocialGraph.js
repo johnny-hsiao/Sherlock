@@ -87,14 +87,14 @@ export default class Social extends Component {
   //   console.log("socialgraph: will mount")
   // }
   componentDidMount() {
-    console.log("socialgraph: did mount")
+    // console.log("socialgraph: did mount")
     this.socialGraph(this.refs.social, this.props);
   }
   // componentWillUpdate() {
   //   console.log("socialgraph: will update")
   // }
   componentDidUpdate() {
-    console.log("socialgraph: did update");
+    // console.log("socialgraph: did update");
     this.socialGraph(this.refs.social, this.props);
   }
   // componentWillUnmount() {

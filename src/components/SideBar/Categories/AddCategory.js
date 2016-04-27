@@ -53,7 +53,7 @@ export default class AddCategory extends Component {
     let self = this;
     axios.post(`http://127.0.0.1:5000/categories/new`, { name: newCategory })
     .then(function (res) {
-      console.log(res, "added category!");
+      // console.log(res, "added category!");
       self.setState({
         categories: [...self.state.categories, {name: res.data.newCategory.name, id: res.data.newCategory.id }]
       });

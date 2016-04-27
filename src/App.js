@@ -25,7 +25,7 @@ export default class App extends Component {
   }
 
   _updateCurrentAccount = (newAccount) => {
-    console.log('_updateCurrentAccount', newAccount);
+    // console.log('_updateCurrentAccount', newAccount);
     this.setState({
       currentAccount: newAccount
     });

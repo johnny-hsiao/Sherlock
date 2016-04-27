@@ -96,11 +96,18 @@ export default class WordCloud extends Component {
   };
 
   componentDidMount() {
-    this.generateWordle(this.props.categoryWordCloudData, this.refs.word_cloud);
+    if (this.props.categoryWordCloudData && this.props.categoryWordCloudData.length > 0) {
+      this.generateWordle(this.props.categoryWordCloudData, this.refs.word_cloud);
+    }
   }
 
   componentDidUpdate() {
-    this.generateWordle(this.props.categoryWordCloudData, this.refs.word_cloud);
+    if (this.props.categoryWordCloudData && this.props.categoryWordCloudData.length > 0) {
+      this.generateWordle(this.props.categoryWordCloudData, this.refs.word_cloud);
+    }
+    else {
+      this.generateWordle([{text: "No data available", size: 100}], this.refs.word_cloud);
+    }
   }
 
   render() {

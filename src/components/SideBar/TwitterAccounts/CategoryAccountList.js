@@ -10,7 +10,7 @@ export default class AccountList extends Component {
 
   _updateCurrentAccount(e) {
     let reactid = e.target.getAttribute('data-reactid');
-    console.log(reactid.match(/accountID(\d*)/));
+    // console.log(reactid.match(/accountID(\d*)/));
     let accountID = reactid.match(/accountID(\d*)/)[1];
     this.props.onAccountChange(accountID);
   }

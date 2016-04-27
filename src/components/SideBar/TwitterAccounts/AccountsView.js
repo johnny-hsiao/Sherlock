@@ -57,7 +57,7 @@ export default class AccountsView extends Component {
 
   _addAccount = (e) => {
     e.preventDefault();
-    console.log("addaccount", this.refs.accountInput.value)
+    // console.log("addaccount", this.refs.accountInput.value)
     let self = this;
     
 
