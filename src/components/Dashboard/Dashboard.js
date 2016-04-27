@@ -108,6 +108,7 @@ export default class Dashboard extends Component {
   }
 
   _categoryCloudAPICall = () => {
+    this._clearCloudData();
     console.log('cloud API call', this.props.currentCategory);
     axios.get(`http://127.0.0.1:5000/categories/${this.props.currentCategory}/word_cloud`)
     .then((res) => {
@@ -156,6 +157,12 @@ export default class Dashboard extends Component {
       this.props.onAccountChange(undefined);
       this._updateCategoryArticleListData(res.data);
     });
+  }
+
+  _clearCloudData = () => {
+    this.setState({
+      categoryWordCloudData: undefined
+    })
   }
 
   _updateCurrentWord = (newWord) => {

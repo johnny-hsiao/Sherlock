@@ -73,7 +73,7 @@ export default class LineGraph extends Component {
         .attr("cy", function (d, i) {
          return y(d.close);
      })
-        .attr("r", 5)
+        .attr("r", 7)
          .on('mouseover', tip.show)
          .on('mouseout', tip.hide);
         // Add the X Axis
