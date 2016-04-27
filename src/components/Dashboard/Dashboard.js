@@ -63,6 +63,11 @@ export default class Dashboard extends Component {
 
   componentDidUpdate() {
     // console.log('dashboard: did update', this.props.currentCategory);
+    // if ((this.state.category != this.props.currentCategory) || (this.props.currentAccount)) {
+      
+    // }
+
+
     if (this.props.currentAccount) {
       console.log('making api call for account');
       this._accountLineAPICall();
@@ -192,18 +197,26 @@ export default class Dashboard extends Component {
   }
 
   _updateWordFreqList = (keywordData) => {
+    let word = undefined;
+    if (keywordData) {
+      word = keywordData[0].text;
+    }
     console.log('update word freq list');
     this.setState({
-      currentWord: keywordData[0].text,
-      linegraphKeyword: keywordData[0].text,
+      currentWord: word,
+      linegraphKeyword: word,
       wordFreqList: keywordData
     });
   }
 
   _updateCategoryArticleListData = (articleListData) => {
-    console.log('update category article list', articleListData[0].text);
+    let articleID = undefined;
+    if (articleListData) {
+      articleID = articleListData[0].id;
+    }
+    // console.log('update category article list', articleListData[0].text);
     this.setState({
-      currentArticle: articleListData[0].id,
+      currentArticle: articleID,
       categoryArticleListData: articleListData
     });
   }
