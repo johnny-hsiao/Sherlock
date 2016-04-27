@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
-@import url(https://fonts.googleapis.com/css?family=Tangerine);
 
 .navbar {
   padding: 15px 0;
@@ -19,13 +18,13 @@
   vertical-align: middle;
   display: inline;
   line-height: 50px;
+  padding-left: 35px;
 }
 
 #brand-image {
-  border-radius: 100%;
   height: 60px;
-  width: 60px;
 }
+
 #sherlock-title {
   padding-left: 12px;
 }

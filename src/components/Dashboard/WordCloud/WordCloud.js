@@ -8,8 +8,12 @@ export default class WordCloud extends Component {
 
   generateWordle(allKeywords, node) {
     var scaledFonts = [];
-
-    if(allKeywords[allKeywords.length/2].size < 30 ){
+    if (allKeywords[allKeywords.length/2].size < 15 ) {
+      allKeywords.forEach(function (keyword) {
+        scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size * 2.5});
+      });
+    }
+    else if(allKeywords[allKeywords.length/2].size < 30 ){
       allKeywords.forEach(function (keyword) {
         scaledFonts.push({ text: keyword.text.toUpperCase(), size: keyword.size * 1.3});
       });
@@ -56,10 +60,10 @@ export default class WordCloud extends Component {
       var origSize = 0;
       d3.select(node).append('svg')
           .attr("preserveAspectRatio", "xMinYMin meet")
-          .attr("viewBox", "50 0 1468.5 346")
+          .attr("viewBox", "50 0 1468.5 377")
           .attr("class", "word-cloud-text svg-content-responsive", true)
         .append('g')
-          .attr('transform', 'translate(734,175)')
+          .attr('transform', 'translate(734,200)')
         .selectAll('text')
           .data(words)
         .enter().append('text').style('font-weight', 'bold')
