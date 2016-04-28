@@ -1,0 +1,8 @@
+[
+  {
+    "technology": ["engadget","CiscoSystems","ForbesTech","pmarca","waltmossberg","Entrepreneur","techreview","pcworld","TeslaMotors"],
+    "finance": ["WSJ","FinancialTimes","GoldmanSachs","BloombergTV","CNNMoney","davemcclure","businessinsider","MorganStanley","CreditSuisse"],
+    "sports": ["MLB","SInow","BleacherReport","SportsCenter","espn","Nationals","theScore","nfl","NHL","TSN_Sports"],
+    "education": ["arneduncan","educationweek","educause","usedgov","TeachThought","GdnHigherEd","insidehighered"]
+  }
+]

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bar_graph.css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="/javascripts/d3.layout.cloud.js"></script>
+    <script src="/javascripts/liquidFillGauge.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form id="input_url">
+      <input type="text" name="url" placeholder="Enter article URL" />
+    </form>
+
+    <div id="categories_list"></div>
+    <div id="accounts_list"></div>
+
+    <button id="destroy_db">Clear DB</button>
+
+    <div id="word_cloud"></div>
+    <div id="word_line"></div>
+    <div id="tone_graphs">
+      <svg id="anger" width="14%" height="200"></svg>
+      <svg id="disgust" width="14%" height="200"></svg>
+      <svg id="fear" width="14%" height="200" ></svg>
+      <svg id="joy" width="14%" height="200"></svg>
+      <svg id="sadness" width="14%" height="200"></svg>
+    </div>
+    <div id="writing">
+      <div id="analytic"></div>
+      <div id="Confidence"></div>
+      <div id="Tentative"></div>
+    </div>
+
+
+    <button id="twitter">Add Tweets</button>
+
+    
+    
+    <script type="text/javascript" src="/javascripts/word_cloud.js"></script>
+    <script type="text/javascript" src="/javascripts/word_line.js"></script>
+    <script type="text/javascript" src="/javascripts/tone_graphs.js"></script>
+    <script type="text/javascript" src="/javascripts/bar_graph.js"></script>
+    <script type="text/javascript" src="/javascripts/application.js"></script>
+
+
+  </body>
+
+</html>
