@@ -20,7 +20,9 @@
     "request": "^2.71.0",
     "sequelize": "^3.21.0",
     "sequelize-cli": "^2.3.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "twitter": "^1.2.5",
+    "watson-developer-cloud": "^1.4.1"
   },
   "main": "app.js",
   "author": "",
