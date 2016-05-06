@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         Category.hasMany(models.Account);
         Category.hasMany(models.Article);
         Category.hasMany(models.Keyword);
+        Category.belongsTo(models.User);
       }
     }
   });
